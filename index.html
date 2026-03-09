@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortal Kombat Prototype</title>
+    <style>
+        :root {
+            --p1-color: #3b82f6;
+            /* Blue */
+            --p2-color: #ef4444;
+            /* Red */
+            --bg-dark: #0a0a0a;
+            --arena-floor: #333;
+            --health-bg: #444;
+            --health-green: #22c55e;
+            --accent: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #game-container {
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            border: 2px solid #222;
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+        }
+
+        .health-bar-container {
+            width: 40%;
+            height: 30px;
+            background: var(--health-bg);
+            border: 3px solid #fff;
+            position: relative;
+        }
+
+        .health-fill {
+            height: 100%;
+            background: var(--health-green);
+            transition: width 0.2s ease-out;
+            width: 100%;
+        }
+
+        #p1-health-fill {
+            float: right;
+        }
+
+        #p2-health-fill {
+            float: left;
+        }
+
+        #timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--accent);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 80px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            display: none;
+            z-index: 10;
+            text-align: center;
+        }
+
+        canvas {
+            background: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.5)), #1a1a1a;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-container">
+        <div id="ui">
+            <div class="health-bar-container">
+                <div id="p1-health-fill" class="health-fill"></div>
+            </div>
+            <div id="timer">60</div>
+            <div class="health-bar-container">
+                <div id="p2-health-fill" class="health-fill"></div>
+            </div>
+        </div>
+        <div id="message"></div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const timerEl = document.getElementById('timer');
+        const messageEl = document.getElementById('message');
+        const p1HealthFill = document.getElementById('p1-health-fill');
+        const p2HealthFill = document.getElementById('p2-health-fill');
+
+        canvas.width = 1024;
+        canvas.height = 576;
+
+        const GRAVITY = 0.7;
+        const GROUND_Y = canvas.height - 60;
+
+        // --- Game State ---
+        let gameActive = true;
+        let timeLeft = 60;
+        let timerId;
+
+        // --- Input Handling ---
+        const keys = {
+            a: { pressed: false },
+            d: { pressed: false },
+            w: { pressed: false },
+            ArrowRight: { pressed: false },
+            ArrowLeft: { pressed: false },
+            ArrowUp: { pressed: false }
+        };
+
+        window.addEventListener('keydown', (event) => {
+            if (!gameActive) return;
+            switch (event.key) {
+                case 'a': keys.a.pressed = true; break;
+                case 'd': keys.d.pressed = true; break;
+                case 'w': player1.jump(); break;
+                case ' ': player1.attack(); break;
+
+                case 'ArrowRight': keys.ArrowRight.pressed = true; break;
+                case 'ArrowLeft': keys.ArrowLeft.pressed = true; break;
+                case 'ArrowUp': player2.jump(); break;
+                case 'Enter': player2.attack(); break;
+            }
+        });
+
+        window.addEventListener('keyup', (event) => {
+            switch (event.key) {
+                case 'a': keys.a.pressed = false; break;
+                case 'd': keys.d.pressed = false; break;
+                case 'ArrowRight': keys.ArrowRight.pressed = false; break;
+                case 'ArrowLeft': keys.ArrowLeft.pressed = false; break;
+            }
+        });
+
+        // --- Classes ---
+        class Sprite {
+            constructor({ position, velocity, color, offset }) {
+                this.position = position;
+                this.velocity = velocity;
+                this.width = 50;
+                this.height = 150;
+                this.color = color;
+                this.health = 100;
+                this.isAttacking = false;
+                this.attackBox = {
+                    position: { x: this.position.x, y: this.position.y },
+                    offset,
+                    width: 100,
+                    height: 50
+                };
+            }
+
+            draw() {
+                // Character
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+                // Attack box (only visible during attack for visual feedback)
+                if (this.isAttacking) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.fillRect(
+                        this.attackBox.position.x,
+                        this.attackBox.position.y,
+                        this.attackBox.width,
+                        this.attackBox.height
+                    );
+                }
+            }
+
+            update() {
+                this.draw();
+
+                // Update attack box position
+                this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+                this.attackBox.position.y = this.position.y + 50;
+
+                this.position.x += this.velocity.x;
+                this.position.y += this.velocity.y;
+
+                // Gravity & Ground Collision
+                if (this.position.y + this.height + this.velocity.y >= GROUND_Y) {
+                    this.velocity.y = 0;
+                    this.position.y = GROUND_Y - this.height;
+                } else {
+                    this.velocity.y += GRAVITY;
+                }
+
+                // Arena Boundaries
+                if (this.position.x < 0) this.position.x = 0;
+                if (this.position.x + this.width > canvas.width) this.position.x = canvas.width - this.width;
+            }
+
+            jump() {
+                if (this.position.y + this.height >= GROUND_Y) {
+                    this.velocity.y = -20;
+                }
+            }
+
+            attack() {
+                this.isAttacking = true;
+                setTimeout(() => {
+                    this.isAttacking = false;
+                }, 100);
+            }
+        }
+
+        // --- Init Players ---
+        const player1 = new Sprite({
+            position: { x: 150, y: 0 },
+            velocity: { x: 0, y: 0 },
+            color: '#3b82f6',
+            offset: { x: 0, y: 0 }
+        });
+
+        const player2 = new Sprite({
+            position: { x: 800, y: 0 },
+            velocity: { x: 0, y: 0 },
+            color: '#ef4444',
+            offset: { x: -50, y: 0 }
+        });
+
+        // --- Utilities ---
+        function rectangularCollision({ rectangle1, rectangle2 }) {
+            return (
+                rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x &&
+                rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width &&
+                rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.position.y &&
+                rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+            )
+        }
+
+        function determineWinner({ player1, player2, timerId }) {
+            clearTimeout(timerId);
+            gameActive = false;
+            messageEl.style.display = 'block';
+
+            if (player1.health === player2.health) {
+                messageEl.innerText = 'Tie';
+            } else if (player1.health > player2.health) {
+                messageEl.innerText = 'Player 1 Wins!';
+            } else {
+                messageEl.innerText = 'Player 2 Wins!';
+            }
+        }
+
+        function decreaseTimer() {
+            if (timeLeft > 0) {
+                timerId = setTimeout(decreaseTimer, 1000);
+                timeLeft--;
+                timerEl.innerText = timeLeft;
+            }
+
+            if (timeLeft === 0) {
+                determineWinner({ player1, player2, timerId });
+            }
+        }
+
+        // --- Game Loop ---
+        function animate() {
+            window.requestAnimationFrame(animate);
+
+            // Clear Canvas
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Ground
+            ctx.fillStyle = '#333';
+            ctx.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
+
+            player1.update();
+            player2.update();
+
+            // Player 1 Movement
+            player1.velocity.x = 0;
+            if (keys.a.pressed) player1.velocity.x = -5;
+            else if (keys.d.pressed) player1.velocity.x = 5;
+
+            // Player 2 Movement
+            player2.velocity.x = 0;
+            if (keys.ArrowLeft.pressed) player2.velocity.x = -5;
+            else if (keys.ArrowRight.pressed) player2.velocity.x = 5;
+
+            // Player vs Player Collision (Prevent overlapping)
+            if (player1.position.x + player1.width > player2.position.x &&
+                player1.position.x < player2.position.x + player2.width) {
+
+                // Simple push back logic
+                if (player1.position.x < player2.position.x) {
+                    player1.position.x = player2.position.x - player1.width;
+                } else {
+                    player1.position.x = player2.position.x + player2.width;
+                }
+            }
+
+            // Detect Combat Collisions
+            if (player1.isAttacking && rectangularCollision({ rectangle1: player1, rectangle2: player2 })) {
+                player1.isAttacking = false;
+                player2.health -= 10;
+                p2HealthFill.style.width = player2.health + '%';
+            }
+
+            if (player2.isAttacking && rectangularCollision({ rectangle1: player2, rectangle2: player1 })) {
+                player2.isAttacking = false;
+                player1.health -= 10;
+                p1HealthFill.style.width = player1.health + '%';
+            }
+
+            // End game on 0 HP
+            if (player1.health <= 0 || player2.health <= 0) {
+                determineWinner({ player1, player2, timerId });
+            }
+        }
+
+        // --- Start ---
+        decreaseTimer();
+        animate();
+
+    </script>
+</body>
+
+</html>
