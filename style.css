@@ -67,12 +67,15 @@ body {
 
 #character-grid {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
+    max-width: 600px;
 }
 
 .char-slot {
-    width: 150px;
-    height: 200px;
+    width: 160px;
+    height: 180px;
     background: #111;
     border: 3px solid #444;
     cursor: pointer;
@@ -81,6 +84,8 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    position: relative;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }
 
 .char-slot:hover {
@@ -133,6 +138,15 @@ body {
     font-size: 14px;
     opacity: 0.6;
     animation: blink 1s infinite alternate;
+}
+
+#controls-info {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 80%;
+    opacity: 0.8;
 }
 
 @keyframes blink {

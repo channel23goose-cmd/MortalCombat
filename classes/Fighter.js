@@ -73,12 +73,33 @@ export class Fighter {
                 // Mask
                 ctx.fillRect(this.position.x + 10, this.position.y + 80, 40, 10);
             } else {
+                // Character specific details
+                if (this.name === 'JAX') {
+                    // Jax has silver arms
+                    ctx.fillStyle = '#bbb';
+                    ctx.fillRect(this.position.x - 10, this.position.y + 30, 20, 60);
+                    ctx.fillRect(this.position.x + 50, this.position.y + 30, 20, 60);
+                    ctx.fillStyle = this.color;
+                }
+
                 // Chest piece
                 ctx.fillRect(this.position.x + 10, this.position.y + 30, 40, 60);
                 // Belt
                 ctx.fillRect(this.position.x, this.position.y + 90, this.width, 10);
-                // Mask
-                ctx.fillRect(this.position.x + 10, this.position.y + 10, 40, 15);
+                // Mask/Headband
+                if (this.name === 'LIU KANG') {
+                    ctx.fillRect(this.position.x + 5, this.position.y + 10, 50, 5); // Headband
+                } else if (this.name === 'RAIDEN') {
+                    ctx.fillStyle = '#ddd';
+                    ctx.beginPath(); // Straw hat
+                    ctx.moveTo(this.position.x - 10, this.position.y + 20);
+                    ctx.lineTo(this.position.x + 70, this.position.y + 20);
+                    ctx.lineTo(this.position.x + 30, this.position.y);
+                    ctx.fill();
+                    ctx.fillStyle = this.color;
+                } else {
+                    ctx.fillRect(this.position.x + 10, this.position.y + 10, 40, 15);
+                }
             }
 
             // Head and Eyes
@@ -231,23 +252,25 @@ export class Fighter {
         );
     }
 
-    attack(type = 'high') {
+    attack(type = 'punch', height = 'high') {
         if (this.attackCooldown || this.isFrozen || this.isDead) return;
 
-        this.isLowAttack = (type === 'low' || this.isCrouching);
+        this.isLowAttack = (height === 'low' || this.isCrouching);
         this.isAttacking = true;
         this.attackCooldown = true;
 
-        if (this.sounds) this.sounds.playPunch();
+        if (this.sounds) {
+            type === 'punch' ? this.sounds.playPunch() : this.sounds.playKick();
+        }
 
         setTimeout(() => {
             this.isAttacking = false;
             this.isLowAttack = false;
-        }, 100);
+        }, 120);
 
         setTimeout(() => {
             this.attackCooldown = false;
-        }, 500);
+        }, 400); // Faster recovery than before
     }
 
     takeDamage(amount, isLow) {

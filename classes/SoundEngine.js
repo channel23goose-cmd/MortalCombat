@@ -30,6 +30,19 @@ export class SoundEngine {
         this.playNoise(0.4, 400, 100, 0.4);
     }
 
+    playLightning() {
+        this.playNoise(0.2, 2000, 500, 0.3);
+        this.playTone(800, 200, 0.2, 'sawtooth');
+    }
+
+    playFireball() {
+        this.playNoise(0.3, 1000, 200, 0.5);
+    }
+
+    playEarthquake() {
+        this.playNoise(1.0, 100, 20, 0.5);
+    }
+
     playFinishHim() {
         this.playTone(100, 50, 1.0, 'square');
     }

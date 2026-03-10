@@ -60,6 +60,29 @@ export class Projectile {
                 ctx.arc(this.position.x + Math.random() * this.size, this.position.y + Math.random() * this.size, 3, 0, Math.PI * 2);
                 ctx.fill();
             }
+        } else if (this.type === 'fireball') {
+            // Liu Kang's Fireball
+            ctx.fillStyle = '#ff3300';
+            ctx.beginPath();
+            ctx.arc(this.position.x + this.size / 2, this.position.y + this.size / 2, this.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+            // Core
+            ctx.fillStyle = '#ffff00';
+            ctx.beginPath();
+            ctx.arc(this.position.x + this.size / 2, this.position.y + this.size / 2, this.size / 3, 0, Math.PI * 2);
+            ctx.fill();
+        } else if (this.type === 'lightning') {
+            // Raiden's Lightning
+            ctx.strokeStyle = '#88ccff';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(this.position.x, this.position.y + this.size / 2);
+            for (let i = 0; i < 5; i++) {
+                ctx.lineTo(this.position.x + (i * this.size / 5), this.position.y + Math.random() * this.size);
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#fff';
         }
 
         ctx.restore();
@@ -102,6 +125,14 @@ export class Projectile {
         } else if (this.type === 'acid') {
             if (this.sounds) this.sounds.playAcid();
             opponent.takeDamage(15); // Higher damage but no stun
+            opponent.spawnBlood(opponent.position.x + opponent.width / 2, opponent.position.y + 50);
+        } else if (this.type === 'fireball') {
+            if (this.sounds) this.sounds.playFireball();
+            opponent.takeDamage(12);
+            opponent.spawnBlood(opponent.position.x + opponent.width / 2, opponent.position.y + 50);
+        } else if (this.type === 'lightning') {
+            if (this.sounds) this.sounds.playLightning();
+            opponent.takeDamage(10);
             opponent.spawnBlood(opponent.position.x + opponent.width / 2, opponent.position.y + 50);
         }
     }
