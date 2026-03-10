@@ -47,6 +47,19 @@ export class Projectile {
             ctx.beginPath();
             ctx.arc(this.position.x + this.size / 2, this.position.y + this.size / 2, this.size / 2, 0, Math.PI * 2);
             ctx.fill();
+        } else if (this.type === 'acid') {
+            // Reptile's Acid Spit
+            ctx.fillStyle = '#22dd22';
+            ctx.beginPath();
+            ctx.ellipse(this.position.x + this.size / 2, this.position.y + this.size / 2, this.size, this.size / 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+            // Bubbles
+            ctx.fillStyle = '#ccffcc';
+            for (let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.arc(this.position.x + Math.random() * this.size, this.position.y + Math.random() * this.size, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
         ctx.restore();
@@ -86,6 +99,10 @@ export class Projectile {
             if (this.sounds) this.sounds.playPunch();
             opponent.pull(this.owner.position.x);
             opponent.takeDamage(5);
+        } else if (this.type === 'acid') {
+            if (this.sounds) this.sounds.playAcid();
+            opponent.takeDamage(15); // Higher damage but no stun
+            opponent.spawnBlood(opponent.position.x + opponent.width / 2, opponent.position.y + 50);
         }
     }
 }

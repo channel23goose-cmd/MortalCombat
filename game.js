@@ -34,6 +34,7 @@ class Game {
                 left: 'KeyA',
                 right: 'KeyD',
                 jump: 'KeyW',
+                crouch: 'KeyS',
                 attack: 'KeyF',
                 block: 'KeyG'
             },
@@ -73,13 +74,112 @@ class Game {
         this.shakeTimer = 0;
         this.shakeIntensity = 0;
 
+        this.gameState = 'selection'; // 'selection' or 'fighting'
+        this.p1Choice = 'scorpion';
+        this.p2Choice = 'subzero';
+        this.characters = {
+            scorpion: { color: '#ffcc00', name: 'SCORPION' },
+            subzero: { color: '#33ccff', name: 'SUB-ZERO' },
+            reptile: { color: '#22dd22', name: 'REPTILE' }
+        };
+
         this.init();
     }
 
     init() {
         console.log("Game Initialized");
-        this.decreaseTimer();
+        this.setupSelectionListeners();
         this.animate();
+    }
+
+    setupSelectionListeners() {
+        window.addEventListener('keydown', (e) => {
+            if (this.gameState !== 'selection') return;
+
+            // Simple P1 selection (WASD)
+            if (e.code === 'KeyD') this.cycleSelection('p1', 1);
+            if (e.code === 'KeyA') this.cycleSelection('p1', -1);
+
+            // Simple P2 selection (Arrows)
+            if (e.code === 'ArrowRight') this.cycleSelection('p2', 1);
+            if (e.code === 'ArrowLeft') this.cycleSelection('p2', -1);
+
+            if (e.code === 'Space') this.startGame();
+        });
+        this.updateSelectionUI();
+    }
+
+    cycleSelection(player, dir) {
+        const charKeys = Object.keys(this.characters);
+        if (player === 'p1') {
+            let idx = charKeys.indexOf(this.p1Choice);
+            idx = (idx + dir + charKeys.length) % charKeys.length;
+            this.p1Choice = charKeys[idx];
+        } else {
+            let idx = charKeys.indexOf(this.p2Choice);
+            idx = (idx + dir + charKeys.length) % charKeys.length;
+            this.p2Choice = charKeys[idx];
+        }
+        this.updateSelectionUI();
+    }
+
+    updateSelectionUI() {
+        document.getElementById('p1-selected').innerText = this.p1Choice.toUpperCase();
+        document.getElementById('p2-selected').innerText = this.p2Choice.toUpperCase();
+
+        document.querySelectorAll('.char-slot').forEach(slot => {
+            slot.classList.remove('active-p1', 'active-p2');
+            if (slot.dataset.char === this.p1Choice) slot.classList.add('active-p1');
+            if (slot.dataset.char === this.p2Choice) slot.classList.add('active-p2');
+        });
+    }
+
+    startGame() {
+        this.gameState = 'fighting';
+        document.getElementById('selection-screen').style.display = 'none';
+        document.getElementById('hud').style.display = 'flex';
+
+        // Re-initialize players with chosen characters
+        this.player1 = new Fighter({
+            position: { x: 200, y: 100 },
+            velocity: { x: 0, y: 0 },
+            color: this.characters[this.p1Choice].color,
+            name: this.characters[this.p1Choice].name,
+            facing: 'right',
+            controls: {
+                left: 'KeyA',
+                right: 'KeyD',
+                jump: 'KeyW',
+                crouch: 'KeyS',
+                attack: 'KeyF',
+                block: 'KeyG'
+            },
+            sounds: this.sounds,
+            game: this
+        });
+
+        this.player2 = new Fighter({
+            position: { x: 900, y: 100 },
+            velocity: { x: 0, y: 0 },
+            color: this.characters[this.p2Choice].color,
+            name: this.characters[this.p2Choice].name,
+            facing: 'left',
+            controls: {
+                left: 'ArrowLeft',
+                right: 'ArrowRight',
+                jump: 'ArrowUp',
+                crouch: 'ArrowDown',
+                attack: 'Period',
+                block: 'Slash'
+            },
+            sounds: this.sounds,
+            game: this
+        });
+
+        document.querySelector('.p1 .name').innerText = this.player1.name;
+        document.querySelector('.p2 .name').innerText = this.player2.name;
+
+        this.decreaseTimer();
     }
 
     decreaseTimer() {
@@ -142,6 +242,8 @@ class Game {
 
     animate() {
         window.requestAnimationFrame(() => this.animate());
+
+        if (this.gameState === 'selection') return;
 
         this.ctx.save();
 
@@ -257,6 +359,7 @@ class Game {
             this.player1.velocity.y = -20;
             this.player1.onGround = false;
         }
+        this.player1.isCrouching = this.input.keys[this.player1.controls.crouch] && this.player1.onGround;
 
         // Player 2
         this.player2.velocity.x = 0;
@@ -266,6 +369,7 @@ class Game {
             this.player2.velocity.y = -20;
             this.player2.onGround = false;
         }
+        this.player2.isCrouching = this.input.keys[this.player2.controls.crouch] && this.player2.onGround;
 
         // Player 1 Blocking
         this.player1.block(this.input.keys[this.player1.controls.block]);
@@ -274,8 +378,12 @@ class Game {
         this.player2.block(this.input.keys[this.player2.controls.block]);
 
         // Attacks
-        if (this.input.keys[this.player1.controls.attack]) this.player1.attack();
-        if (this.input.keys[this.player2.controls.attack]) this.player2.attack();
+        if (this.input.keys[this.player1.controls.attack]) {
+            this.player1.attack(this.player1.isCrouching ? 'low' : 'high');
+        }
+        if (this.input.keys[this.player2.controls.attack]) {
+            this.player2.attack(this.player2.isCrouching ? 'low' : 'high');
+        }
 
         // Special Moves
         const now = Date.now();
@@ -320,6 +428,35 @@ class Game {
         // Sub-Zero Slide (ShiftRight)
         if (this.input.keys['ShiftRight'] && now - this.lastP2Special > 1500) {
             this.player2.slide();
+            this.lastP2Special = now;
+        }
+
+        // Reptile Acid Spit (R for P1, Backslash for P2)
+        if (this.p1Choice === 'reptile' && this.input.keys['KeyR'] && now - this.lastP1Special > 1500) {
+            this.sounds.playAcid();
+            this.projectiles.push(new Projectile({
+                position: { x: this.player1.position.x + this.player1.width, y: this.player1.position.y + 40 },
+                velocity: { x: this.player1.facing === 'right' ? 12 : -12, y: 0 },
+                color: '#22dd22',
+                size: 25,
+                type: 'acid',
+                owner: this.player1,
+                sounds: this.sounds
+            }));
+            this.lastP1Special = now;
+        }
+
+        if (this.p2Choice === 'reptile' && this.input.keys['Backslash'] && now - this.lastP2Special > 1500) {
+            this.sounds.playAcid();
+            this.projectiles.push(new Projectile({
+                position: { x: this.player2.position.x - 20, y: this.player2.position.y + 40 },
+                velocity: { x: this.player2.facing === 'left' ? -12 : 12, y: 0 },
+                color: '#22dd22',
+                size: 25,
+                type: 'acid',
+                owner: this.player2,
+                sounds: this.sounds
+            }));
             this.lastP2Special = now;
         }
     }

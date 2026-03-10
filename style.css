@@ -41,13 +41,118 @@ body {
     display: block;
 }
 
+/* Character Selection Screen */
+#selection-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #222, #000);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+#selection-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    letter-spacing: 5px;
+    margin-bottom: 50px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+#character-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.char-slot {
+    width: 150px;
+    height: 200px;
+    background: #111;
+    border: 3px solid #444;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.char-slot:hover {
+    border-color: #777;
+    transform: scale(1.05);
+}
+
+.char-slot.active-p1 {
+    border-color: var(--p1-color);
+    box-shadow: 0 0 20px var(--p1-color);
+}
+
+.char-slot.active-p2 {
+    border-color: var(--p2-color);
+    box-shadow: 0 0 20px var(--p2-color);
+}
+
+.char-portrait {
+    width: 100%;
+    height: 140px;
+    background: #333;
+    margin-bottom: 10px;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+
+.char-name {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+#selection-info {
+    margin-top: 40px;
+    display: flex;
+    gap: 100px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+}
+
+.p1-choice span {
+    color: var(--p1-color);
+}
+
+.p2-choice span {
+    color: var(--p2-color);
+}
+
+#start-hint {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.6;
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
 /* HUD Styling */
 #hud {
     position: absolute;
     top: 40px;
     left: 5%;
     right: 5%;
-    display: flex;
+    display: none;
+    /* Hidden during selection */
     justify-content: space-between;
     align-items: flex-start;
     z-index: 10;

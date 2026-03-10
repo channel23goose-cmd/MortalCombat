@@ -26,6 +26,10 @@ export class SoundEngine {
         this.playTone(200, 800, 0.2, 'sine');
     }
 
+    playAcid() {
+        this.playNoise(0.4, 400, 100, 0.4);
+    }
+
     playFinishHim() {
         this.playTone(100, 50, 1.0, 'square');
     }

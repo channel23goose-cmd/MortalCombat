@@ -21,6 +21,8 @@ export class Fighter {
         this.isSliding = false;
         this.isDead = false;
         this.isDizzy = false;
+        this.isCrouching = false;
+        this.isLowAttack = false;
         this.newBloodStains = [];
 
         // Hitbox for attacking
@@ -56,13 +58,21 @@ export class Fighter {
             ctx.fillStyle = this.isFrozen ? '#88ccff' : '#111'; // Black suit
             if (this.isSliding) {
                 ctx.fillRect(this.position.x, this.position.y + 75, this.width + 40, this.height - 75);
+            } else if (this.isCrouching) {
+                ctx.fillRect(this.position.x, this.position.y + 75, this.width, this.height - 75);
             } else {
                 ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
             }
 
             // Tabard (The colored part)
             ctx.fillStyle = this.isFrozen ? '#88ccff' : this.color;
-            if (!this.isSliding) {
+            if (this.isSliding) {
+                // No tabard detail needed for slide
+            } else if (this.isCrouching) {
+                ctx.fillRect(this.position.x + 5, this.position.y + 90, 50, 40);
+                // Mask
+                ctx.fillRect(this.position.x + 10, this.position.y + 80, 40, 10);
+            } else {
                 // Chest piece
                 ctx.fillRect(this.position.x + 10, this.position.y + 30, 40, 60);
                 // Belt
@@ -74,7 +84,8 @@ export class Fighter {
             // Head and Eyes
             ctx.fillStyle = this.isFrozen ? '#fff' : '#000';
             const eyeX = this.facing === 'right' ? this.position.x + 40 : this.position.x + 10;
-            ctx.fillRect(eyeX, this.position.y + 15, 10, 4);
+            const eyeY = this.isCrouching ? this.position.y + 85 : this.position.y + 15;
+            ctx.fillRect(eyeX, eyeY, 10, 4);
 
             ctx.restore();
         }
@@ -148,7 +159,12 @@ export class Fighter {
         this.attackBox.position.x = this.facing === 'right' ?
             this.position.x + this.width :
             this.position.x - this.attackBox.width;
-        this.attackBox.position.y = this.position.y + 30;
+
+        if (this.isSliding || this.isLowAttack) {
+            this.attackBox.position.y = this.position.y + 100;
+        } else {
+            this.attackBox.position.y = this.position.y + 30;
+        }
 
         // Handle States
         if (this.isFrozen) {
@@ -191,7 +207,7 @@ export class Fighter {
                     document.getElementById('announcement').innerText += '\nFATALITY';
                 }, 500);
             } else {
-                opponent.takeDamage(this.isSliding ? 15 : 10);
+                opponent.takeDamage(this.isSliding ? 15 : 10, this.isLowAttack);
                 opponent.spawnBlood(
                     opponent.position.x + opponent.width / 2,
                     opponent.position.y + 50
@@ -215,9 +231,10 @@ export class Fighter {
         );
     }
 
-    attack() {
+    attack(type = 'high') {
         if (this.attackCooldown || this.isFrozen || this.isDead) return;
 
+        this.isLowAttack = (type === 'low' || this.isCrouching);
         this.isAttacking = true;
         this.attackCooldown = true;
 
@@ -225,6 +242,7 @@ export class Fighter {
 
         setTimeout(() => {
             this.isAttacking = false;
+            this.isLowAttack = false;
         }, 100);
 
         setTimeout(() => {
@@ -232,8 +250,11 @@ export class Fighter {
         }, 500);
     }
 
-    takeDamage(amount) {
-        if (this.isBlocking) {
+    takeDamage(amount, isLow) {
+        // Crouch blocks beats low attacks, standing block beats high
+        const blocked = this.isBlocking && (isLow ? this.isCrouching : !this.isCrouching);
+
+        if (blocked) {
             amount /= 4;
             if (this.sounds) this.sounds.playKick();
         } else {

@@ -15,6 +15,30 @@
 
 <body>
     <div id="game-container">
+        <!-- Character Selection Screen -->
+        <div id="selection-screen">
+            <h2 id="selection-title">SELECT YOUR FIGHTER</h2>
+            <div id="character-grid">
+                <div class="char-slot" data-char="scorpion">
+                    <div class="char-portrait" style="background-color: var(--p1-color);"></div>
+                    <div class="char-name">SCORPION</div>
+                </div>
+                <div class="char-slot" data-char="subzero">
+                    <div class="char-portrait" style="background-color: var(--p2-color);"></div>
+                    <div class="char-name">SUB-ZERO</div>
+                </div>
+                <div class="char-slot" data-char="reptile">
+                    <div class="char-portrait" style="background-color: #22dd22;"></div>
+                    <div class="char-name">REPTILE</div>
+                </div>
+            </div>
+            <div id="selection-info">
+                <div class="p1-choice">P1: <span id="p1-selected">NONE</span></div>
+                <div class="p2-choice">P2: <span id="p2-selected">NONE</span></div>
+            </div>
+            <div id="start-hint">PRESS SPACE TO FIGHT</div>
+        </div>
+
         <!-- HUD Overlay -->
         <div id="hud">
             <div class="player-stats p1">
