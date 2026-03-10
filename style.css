@@ -1,0 +1,212 @@
+:root {
+    --p1-color: #ffcc00;
+    /* Scorpion Yellow */
+    --p2-color: #33ccff;
+    /* Sub-Zero Blue */
+    --bg-dark: #0a0a0a;
+    --hud-glass: rgba(0, 0, 0, 0.6);
+    --damage-color: #ff3333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background: #111;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.05);
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* HUD Styling */
+#hud {
+    position: absolute;
+    top: 40px;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.player-stats {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.p1 {
+    align-items: flex-start;
+}
+
+.p2 {
+    align-items: flex-end;
+}
+
+.name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+    color: #eee;
+}
+
+.health-bar-container {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    background: var(--hud-glass);
+    border: 2px solid #555;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+}
+
+.health-bar-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+}
+
+.health-bar-inner {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: width 0.1s ease-out;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.p1 .health-bar-inner {
+    left: 0;
+    background: linear-gradient(90deg, #ffcc00, #ff8800);
+}
+
+.p2 .health-bar-inner {
+    right: 0;
+    background: linear-gradient(90deg, #0088ff, #33ccff);
+}
+
+.health-bar-damage {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--damage-color);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.p1 .health-bar-damage {
+    left: 0;
+}
+
+.p2 .health-bar-damage {
+    right: 0;
+}
+
+#timer-container {
+    width: 80px;
+    height: 80px;
+    background: var(--hud-glass);
+    border: 3px solid #777;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#timer {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: #eee;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Game Messages */
+#game-messages {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    pointer-events: none;
+    text-align: center;
+}
+
+#announcement {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(0, 0, 0, 1);
+    letter-spacing: 10px;
+    display: none;
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(3);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#restart-btn {
+    display: block;
+    margin: 40px auto;
+    padding: 15px 40px;
+    background: #ffcc00;
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    border: none;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    pointer-events: all;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+}
+
+#restart-btn:hover {
+    transform: scale(1.1) skewX(-10deg);
+    background: #fff;
+}
