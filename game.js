@@ -78,12 +78,64 @@ class Game {
         this.p1Choice = 'scorpion';
         this.p2Choice = 'subzero';
         this.characters = {
-            scorpion: { color: '#ffcc00', name: 'SCORPION' },
-            subzero: { color: '#33ccff', name: 'SUB-ZERO' },
-            liukang: { color: '#ff3333', name: 'LIU KANG' },
-            reptile: { color: '#22dd22', name: 'REPTILE' },
-            jax: { color: '#888888', name: 'JAX' },
-            raiden: { color: '#ffffff', name: 'RAIDEN' }
+            scorpion: { 
+                color: '#ffcc00', name: 'SCORPION',
+                strikes: {
+                    punchHigh: { damage: 12, reach: 45, duration: 120, cooldown: 350 },
+                    punchLow: { damage: 10, reach: 40, duration: 110, cooldown: 350 },
+                    kickHigh: { damage: 15, reach: 55, duration: 150, cooldown: 450 },
+                    kickLow: { damage: 12, reach: 50, duration: 140, cooldown: 400 }
+                }
+            },
+            subzero: { 
+                color: '#33ccff', name: 'SUB-ZERO',
+                strikes: {
+                    punchHigh: { damage: 10, reach: 40, duration: 110, cooldown: 380 },
+                    punchLow: { damage: 10, reach: 40, duration: 110, cooldown: 350 },
+                    kickHigh: { damage: 18, reach: 50, duration: 160, cooldown: 500 }, // Heavy kick
+                    kickLow: { damage: 12, reach: 50, duration: 140, cooldown: 400 }
+                }
+            },
+            liukang: { 
+                color: '#ff3333', name: 'LIU KANG',
+                strikes: {
+                    // Fast, lower damage
+                    punchHigh: { damage: 8, reach: 35, duration: 90, cooldown: 250 },
+                    punchLow: { damage: 8, reach: 35, duration: 90, cooldown: 250 },
+                    kickHigh: { damage: 12, reach: 50, duration: 120, cooldown: 350 }, // Famous kicks
+                    kickLow: { damage: 10, reach: 45, duration: 110, cooldown: 350 }
+                }
+            },
+            reptile: { 
+                color: '#22dd22', name: 'REPTILE',
+                strikes: {
+                    // Fast punches, medium kicks
+                    punchHigh: { damage: 9, reach: 40, duration: 100, cooldown: 300 },
+                    punchLow: { damage: 9, reach: 40, duration: 100, cooldown: 300 },
+                    kickHigh: { damage: 14, reach: 45, duration: 140, cooldown: 400 },
+                    kickLow: { damage: 11, reach: 45, duration: 130, cooldown: 380 }
+                }
+            },
+            jax: { 
+                color: '#888888', name: 'JAX',
+                strikes: {
+                    // Slow, heavy damage, short reach (punch-focused)
+                    punchHigh: { damage: 20, reach: 40, duration: 200, cooldown: 600 },
+                    punchLow: { damage: 18, reach: 40, duration: 180, cooldown: 550 },
+                    kickHigh: { damage: 22, reach: 45, duration: 220, cooldown: 600 },
+                    kickLow: { damage: 15, reach: 45, duration: 180, cooldown: 500 }
+                }
+            },
+            raiden: { 
+                color: '#ffffff', name: 'RAIDEN',
+                strikes: {
+                    // Long reach, medium damage
+                    punchHigh: { damage: 12, reach: 55, duration: 130, cooldown: 400 },
+                    punchLow: { damage: 10, reach: 50, duration: 120, cooldown: 400 },
+                    kickHigh: { damage: 15, reach: 60, duration: 160, cooldown: 500 },
+                    kickLow: { damage: 12, reach: 55, duration: 150, cooldown: 450 }
+                }
+            }
         };
 
         this.init();

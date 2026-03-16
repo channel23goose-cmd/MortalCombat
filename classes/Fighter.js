@@ -1,3 +1,5 @@
+import { SpriteData, getPixelColor } from './SpriteData.js';
+
 export class Fighter {
     constructor({ position, velocity, color, offset, name, facing, controls, sounds, game }) {
         this.position = position;
@@ -10,6 +12,27 @@ export class Fighter {
         this.controls = controls;
         this.sounds = sounds;
         this.game = game;
+
+        // Character specific attack properties
+        this.attackConfig = game.characters[name.toLowerCase().replace('-', '')]?.strikes || {
+            punchHigh: { damage: 10, reach: 40, duration: 120, cooldown: 400 },
+            punchLow: { damage: 10, reach: 40, duration: 120, cooldown: 400 },
+            kickHigh: { damage: 15, reach: 50, duration: 180, cooldown: 500 },
+            kickLow: { damage: 15, reach: 50, duration: 180, cooldown: 500 }
+        };
+
+        // Determine sprite set
+        const baseName = name.toLowerCase().replace('-', '');
+        if (baseName === 'scorpion' || baseName === 'subzero' || baseName === 'reptile') {
+            this.spriteId = 'ninja';
+            this.charId = baseName;
+        } else if (SpriteData[baseName]) {
+            this.spriteId = baseName;
+            this.charId = baseName;
+        } else {
+            this.spriteId = 'ninja'; // Fallback
+            this.charId = baseName;
+        }
 
         this.health = 100;
         this.isAttacking = false;
@@ -32,6 +55,9 @@ export class Fighter {
             width: 100,
             height: 50
         };
+        
+        // Active attack data for current strike
+        this.currentAttack = { damage: 10, reach: 40 };
 
         this.particles = [];
     }
@@ -43,7 +69,7 @@ export class Fighter {
         ctx.ellipse(this.position.x + this.width / 2, 620, 50, 15, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw Player Body (Ninja Base)
+        // Draw Player Body (Pixel Art)
         if (!this.isTeleporting) {
             ctx.save();
 
@@ -54,59 +80,55 @@ export class Fighter {
                 ctx.strokeRect(this.position.x - 10, this.position.y - 10, this.width + 20, this.height + 20);
             }
 
-            // Body
-            ctx.fillStyle = this.isFrozen ? '#88ccff' : '#111'; // Black suit
-            if (this.isSliding) {
-                ctx.fillRect(this.position.x, this.position.y + 75, this.width + 40, this.height - 75);
-            } else if (this.isCrouching) {
-                ctx.fillRect(this.position.x, this.position.y + 75, this.width, this.height - 75);
-            } else {
-                ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+            let state = 'idle';
+            if (this.isAttacking) state = 'punch';
+            else if (this.isCrouching) state = 'crouch';
+            // isSliding could also map to crouch or a separate one if we had it
+            if (this.isSliding) state = 'crouch';
+            
+            let frame = SpriteData[this.spriteId]?.[state];
+            if (!frame) frame = SpriteData.ninja[state];
+
+            // Render the matrix
+            // Calculate pixel size to fit the width/height (approx 60x150)
+            // Matrix is usually 12 cols x 15 rows.
+            // 60 / 12 = 5px width, 150 / 15 = 10px height. 
+            // In pixel art usually pixels are square, so let's use 10px square pixels and adjust width to 120.
+            const pSize = 10;
+            const mWidth = frame[0].length * pSize; // 120
+            const mHeight = frame.length * pSize; // 150
+            
+            // Adjust X if width is different
+            const drawX = this.position.x - (mWidth - this.width) / 2;
+            const drawY = this.position.y;
+
+            // Handle freezing tint
+            if (this.isFrozen) {
+                ctx.globalAlpha = 0.5; // Draw a blue tint over normal colors? Or just replace colors
             }
 
-            // Tabard (The colored part)
-            ctx.fillStyle = this.isFrozen ? '#88ccff' : this.color;
-            if (this.isSliding) {
-                // No tabard detail needed for slide
-            } else if (this.isCrouching) {
-                ctx.fillRect(this.position.x + 5, this.position.y + 90, 50, 40);
-                // Mask
-                ctx.fillRect(this.position.x + 10, this.position.y + 80, 40, 10);
-            } else {
-                // Character specific details
-                if (this.name === 'JAX') {
-                    // Jax has silver arms
-                    ctx.fillStyle = '#bbb';
-                    ctx.fillRect(this.position.x - 10, this.position.y + 30, 20, 60);
-                    ctx.fillRect(this.position.x + 50, this.position.y + 30, 20, 60);
-                    ctx.fillStyle = this.color;
-                }
+            for (let r = 0; r < frame.length; r++) {
+                const row = frame[r];
+                for (let c = 0; c < row.length; c++) {
+                    const pixel = row[c];
+                    let pColor = getPixelColor(this.charId, pixel, this.color);
+                    
+                    if (pColor) {
+                        if (this.isFrozen && pixel !== '.') {
+                            pColor = '#88ccff'; // Override with ice color
+                        }
+                        ctx.fillStyle = pColor;
 
-                // Chest piece
-                ctx.fillRect(this.position.x + 10, this.position.y + 30, 40, 60);
-                // Belt
-                ctx.fillRect(this.position.x, this.position.y + 90, this.width, 10);
-                // Mask/Headband
-                if (this.name === 'LIU KANG') {
-                    ctx.fillRect(this.position.x + 5, this.position.y + 10, 50, 5); // Headband
-                } else if (this.name === 'RAIDEN') {
-                    ctx.fillStyle = '#ddd';
-                    ctx.beginPath(); // Straw hat
-                    ctx.moveTo(this.position.x - 10, this.position.y + 20);
-                    ctx.lineTo(this.position.x + 70, this.position.y + 20);
-                    ctx.lineTo(this.position.x + 30, this.position.y);
-                    ctx.fill();
-                    ctx.fillStyle = this.color;
-                } else {
-                    ctx.fillRect(this.position.x + 10, this.position.y + 10, 40, 15);
+                        // Support facing direction
+                        let actualC = c;
+                        if (this.facing === 'left') {
+                            actualC = row.length - 1 - c;
+                        }
+
+                        ctx.fillRect(drawX + actualC * pSize, drawY + r * pSize, pSize, pSize);
+                    }
                 }
             }
-
-            // Head and Eyes
-            ctx.fillStyle = this.isFrozen ? '#fff' : '#000';
-            const eyeX = this.facing === 'right' ? this.position.x + 40 : this.position.x + 10;
-            const eyeY = this.isCrouching ? this.position.y + 85 : this.position.y + 15;
-            ctx.fillRect(eyeX, eyeY, 10, 4);
 
             ctx.restore();
         }
@@ -116,18 +138,18 @@ export class Fighter {
         ctx.font = '12px Outfit';
         ctx.fillText(this.name, this.position.x, this.position.y - 10);
 
-        // Draw attack box (only when attacking - debug or dev mode)
-        /*
-        if (this.isAttacking) {
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.4)';
+        // Draw attack box (visual flair)
+        if (this.isAttacking && !this.isTeleporting) {
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = 0.5;
             ctx.fillRect(
                 this.attackBox.position.x,
                 this.attackBox.position.y,
                 this.attackBox.width,
                 this.attackBox.height
             );
+            ctx.globalAlpha = 1.0;
         }
-        */
 
         // Draw Particles
         this.drawParticles(ctx);
@@ -228,13 +250,13 @@ export class Fighter {
                     document.getElementById('announcement').innerText += '\nFATALITY';
                 }, 500);
             } else {
-                opponent.takeDamage(this.isSliding ? 15 : 10, this.isLowAttack);
+                opponent.takeDamage(this.isSliding ? 15 : this.currentAttack.damage, this.isLowAttack);
                 opponent.spawnBlood(
                     opponent.position.x + opponent.width / 2,
                     opponent.position.y + 50
                 );
             }
-            console.log(`${this.name} hit ${opponent.name}`);
+            console.log(`${this.name} hit ${opponent.name} for ${this.currentAttack.damage}`);
         }
 
         // Slide logic continuation
@@ -259,6 +281,15 @@ export class Fighter {
         this.isAttacking = true;
         this.attackCooldown = true;
 
+        // Determine specific strike stats
+        let strikeType = type + (height === 'high' ? 'High' : 'Low');
+        let strikeInfo = this.attackConfig[strikeType];
+        
+        if (!strikeInfo) strikeInfo = { damage: 10, reach: 40, duration: 120, cooldown: 400 };
+
+        this.currentAttack = strikeInfo;
+        this.attackBox.width = strikeInfo.reach;
+
         if (this.sounds) {
             type === 'punch' ? this.sounds.playPunch() : this.sounds.playKick();
         }
@@ -266,11 +297,11 @@ export class Fighter {
         setTimeout(() => {
             this.isAttacking = false;
             this.isLowAttack = false;
-        }, 120);
+        }, strikeInfo.duration);
 
         setTimeout(() => {
             this.attackCooldown = false;
-        }, 400); // Faster recovery than before
+        }, strikeInfo.cooldown);
     }
 
     takeDamage(amount, isLow) {
