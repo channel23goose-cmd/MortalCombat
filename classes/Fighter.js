@@ -14,7 +14,9 @@ export class Fighter {
         this.game = game;
 
         // Character specific attack properties
-        this.attackConfig = game.characters[name.toLowerCase().replace('-', '')]?.strikes || {
+        // Remove hyphens and spaces for the lookup
+        const lookupName = name.toLowerCase().replace(/[-\s]/g, '');
+        this.attackConfig = game.characters[lookupName]?.strikes || {
             punchHigh: { damage: 10, reach: 40, duration: 120, cooldown: 400 },
             punchLow: { damage: 10, reach: 40, duration: 120, cooldown: 400 },
             kickHigh: { damage: 15, reach: 50, duration: 180, cooldown: 500 },
@@ -22,16 +24,13 @@ export class Fighter {
         };
 
         // Determine sprite set
-        const baseName = name.toLowerCase().replace('-', '');
-        if (baseName === 'scorpion' || baseName === 'subzero' || baseName === 'reptile') {
+        this.charId = lookupName;
+        if (lookupName === 'scorpion' || lookupName === 'subzero' || lookupName === 'reptile') {
             this.spriteId = 'ninja';
-            this.charId = baseName;
-        } else if (SpriteData[baseName]) {
-            this.spriteId = baseName;
-            this.charId = baseName;
+        } else if (SpriteData[lookupName]) {
+            this.spriteId = lookupName;
         } else {
             this.spriteId = 'ninja'; // Fallback
-            this.charId = baseName;
         }
 
         this.health = 100;
@@ -83,20 +82,17 @@ export class Fighter {
             let state = 'idle';
             if (this.isAttacking) state = 'punch';
             else if (this.isCrouching) state = 'crouch';
-            // isSliding could also map to crouch or a separate one if we had it
             if (this.isSliding) state = 'crouch';
             
             let frame = SpriteData[this.spriteId]?.[state];
             if (!frame) frame = SpriteData.ninja[state];
+            if (!frame) frame = SpriteData.ninja['idle']; // Failsafe
 
             // Render the matrix
             // Calculate pixel size to fit the width/height (approx 60x150)
-            // Matrix is usually 12 cols x 15 rows.
-            // 60 / 12 = 5px width, 150 / 15 = 10px height. 
-            // In pixel art usually pixels are square, so let's use 10px square pixels and adjust width to 120.
             const pSize = 10;
-            const mWidth = frame[0].length * pSize; // 120
-            const mHeight = frame.length * pSize; // 150
+            const mWidth = frame[0].length * pSize; 
+            const mHeight = frame.length * pSize; 
             
             // Adjust X if width is different
             const drawX = this.position.x - (mWidth - this.width) / 2;

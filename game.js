@@ -22,44 +22,6 @@ class Game {
 
         this.input = new InputHandler();
 
-        // Initialize Fighters
-        this.player1 = new Fighter({
-            position: { x: 200, y: 100 },
-            velocity: { x: 0, y: 0 },
-            color: '#ffcc00', // Scorpion
-            offset: { x: 0, y: 0 },
-            name: 'Scorpion',
-            facing: 'right',
-            controls: {
-                left: 'KeyA',
-                right: 'KeyD',
-                jump: 'KeyW',
-                crouch: 'KeyS',
-                attack: 'KeyF',
-                block: 'KeyG'
-            },
-            sounds: this.sounds,
-            game: this
-        });
-
-        this.player2 = new Fighter({
-            position: { x: 900, y: 100 },
-            velocity: { x: 0, y: 0 },
-            color: '#33ccff', // Sub-Zero
-            offset: { x: 0, y: 0 },
-            name: 'Sub-Zero',
-            facing: 'left',
-            controls: {
-                left: 'ArrowLeft',
-                right: 'ArrowRight',
-                jump: 'ArrowUp',
-                attack: 'Period',
-                block: 'Slash'
-            },
-            sounds: this.sounds,
-            game: this
-        });
-
         this.timer = 99;
         this.timerId = null;
         this.isGameOver = false;
@@ -73,6 +35,9 @@ class Game {
         this.sounds = new SoundEngine();
         this.shakeTimer = 0;
         this.shakeIntensity = 0;
+
+        // Note: Removed the temporary player 1/2 instantiation from top of constructor
+        // Because they are actually initialized in startGame() and rely on SoundEngine which was moved
 
         this.gameState = 'selection'; // 'selection' or 'fighting'
         this.p1Choice = 'scorpion';
