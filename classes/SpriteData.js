@@ -1399,7 +1399,7 @@ export function getPixelColor(charId, pixelCode, primaryColor) {
     if (pixelCode === 'S' && charId === 'liukang') return '#edb68b'; // Med skin
     if (pixelCode === 'A' && charId === 'jax') return '#b0b0b0';    // Chrome arms
 
-    return colors[pixelCode] || '#fffffd';
+    return colors[pixelCode] || '#ff00ff';
 }
 
 function lightenColor(col, amt) {
