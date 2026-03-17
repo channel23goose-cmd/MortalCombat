@@ -42,6 +42,222 @@ class Game {
         this.gameState = 'selection'; // 'selection' or 'fighting'
         this.p1Choice = 'scorpion';
         this.p2Choice = 'subzero';
+        this.mapChoice = 'thepit';
+
+        // ── MK XL-inspired stages ──
+        this.maps = {
+            thepit: {
+                name: 'THE PIT',
+                // Dark bridge over a spike pit, silhouetted mountains, moon
+                thumbGradient: ['#0a0a1a', '#1a0a00'],
+                thumbAccent: '#ff6600',
+                render: (ctx, W, H) => {
+                    // Sky
+                    const sky = ctx.createLinearGradient(0, 0, 0, H);
+                    sky.addColorStop(0, '#0a0a1a'); sky.addColorStop(0.7, '#1a0005'); sky.addColorStop(1, '#050505');
+                    ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+                    // Moon
+                    ctx.fillStyle = 'rgba(255,230,180,0.08)'; ctx.beginPath(); ctx.arc(1000, 100, 90, 0, Math.PI*2); ctx.fill();
+                    ctx.fillStyle = 'rgba(255,230,180,0.04)'; ctx.beginPath(); ctx.arc(1000, 100, 130, 0, Math.PI*2); ctx.fill();
+                    // Far mountains
+                    ctx.fillStyle = '#0d0008';
+                    for (let i=0;i<6;i++) { ctx.beginPath(); ctx.moveTo(i*240,H-100); ctx.lineTo(i*240+120,H-340); ctx.lineTo(i*240+240,H-100); ctx.fill(); }
+                    // Torches on walls
+                    [[120,H-105],[W-120,H-105]].forEach(([tx,ty])=>{
+                        ctx.fillStyle='#cc4400'; ctx.fillRect(tx-4,ty-40,8,30);
+                        const flm=ctx.createRadialGradient(tx,ty-50,2,tx,ty-50,28);
+                        flm.addColorStop(0,'rgba(255,200,0,0.9)'); flm.addColorStop(1,'rgba(255,60,0,0)');
+                        ctx.fillStyle=flm; ctx.beginPath(); ctx.arc(tx,ty-50,28,0,Math.PI*2); ctx.fill();
+                    });
+                    // Bridge platform
+                    const plat = ctx.createLinearGradient(0,H-100,0,H);
+                    plat.addColorStop(0,'#1e1410'); plat.addColorStop(1,'#0a0805');
+                    ctx.fillStyle=plat; ctx.fillRect(0,H-100,W,120);
+                    // Stone lines on bridge
+                    ctx.strokeStyle='rgba(60,40,20,0.5)'; ctx.lineWidth=2;
+                    for(let i=0;i<W;i+=60){ctx.beginPath();ctx.moveTo(i,H-100);ctx.lineTo(i,H);ctx.stroke();}
+                    // Spikes below platform
+                    ctx.fillStyle='#3a1500';
+                    for(let i=0;i<W;i+=30){ ctx.beginPath();ctx.moveTo(i,H);ctx.lineTo(i+15,H-55);ctx.lineTo(i+30,H);ctx.fill(); }
+                    // Spike tips
+                    ctx.fillStyle='#662200';
+                    for(let i=0;i<W;i+=30){ ctx.beginPath();ctx.moveTo(i+12,H-50);ctx.lineTo(i+15,H-68);ctx.lineTo(i+18,H-50);ctx.fill(); }
+                }
+            },
+            thronekahn: {
+                name: "KAHN'S THRONE",
+                thumbGradient: ['#1a0000', '#2a0a00'],
+                thumbAccent: '#cc0000',
+                render: (ctx, W, H) => {
+                    // Red/dark throne room
+                    const sky = ctx.createLinearGradient(0,0,0,H);
+                    sky.addColorStop(0,'#0f0000'); sky.addColorStop(0.6,'#200000'); sky.addColorStop(1,'#050000');
+                    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+                    // Huge columns
+                    ctx.fillStyle='#1a0800';
+                    [[80,H-300,40,300],[220,H-280,35,280],[W-80-40,H-300,40,300],[W-220-35,H-280,35,280]].forEach(([x,y,w,h])=>{
+                        ctx.fillRect(x,y,w,h);
+                        // Column cap
+                        ctx.fillStyle='#2a1200'; ctx.fillRect(x-8,y,w+16,20); ctx.fillStyle='#1a0800';
+                    });
+                    // Skull banners
+                    [[160,80],[W-160,80]].forEach(([bx,by])=>{
+                        ctx.fillStyle='#440000'; ctx.fillRect(bx-15,by,30,180);
+                        ctx.fillStyle='#880000'; ctx.beginPath(); ctx.arc(bx,by+40,20,0,Math.PI*2); ctx.fill();
+                        ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(bx-6,by+35,4,0,Math.PI*2); ctx.fill();
+                        ctx.beginPath(); ctx.arc(bx+6,by+35,4,0,Math.PI*2); ctx.fill();
+                    });
+                    // Throne (background)
+                    ctx.fillStyle='#300000'; ctx.fillRect(W/2-80,H-350,160,250);
+                    ctx.fillStyle='#500000'; ctx.fillRect(W/2-60,H-320,120,80);
+                    // Ground
+                    const gnd=ctx.createLinearGradient(0,H-100,0,H);
+                    gnd.addColorStop(0,'#1a0500'); gnd.addColorStop(1,'#050000');
+                    ctx.fillStyle=gnd; ctx.fillRect(0,H-100,W,120);
+                    // Ground tiles
+                    ctx.strokeStyle='rgba(80,10,10,0.5)'; ctx.lineWidth=1;
+                    for(let i=0;i<W;i+=80){ctx.beginPath();ctx.moveTo(i,H-100);ctx.lineTo(i,H);ctx.stroke();}
+                    for(let i=H-100;i<H;i+=40){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W,i);ctx.stroke();}
+                    // Lava cracks in ground
+                    ctx.strokeStyle='rgba(255,80,0,0.3)'; ctx.lineWidth=2;
+                    [[200,H-80,400,H-60],[600,H-90,900,H-70],[100,H-50,300,H-40]].forEach(([x1,y1,x2,y2])=>{
+                        ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+                    });
+                    // Red torch glow on ceiling
+                    ctx.fillStyle='rgba(255,0,0,0.04)';
+                    ctx.fillRect(0,0,W,200);
+                }
+            },
+            deadpool: {
+                name: 'DEAD POOL',
+                thumbGradient: ['#001a10', '#000d08'],
+                thumbAccent: '#00ff88',
+                render: (ctx, W, H) => {
+                    // Green acid pool chamber
+                    const sky=ctx.createLinearGradient(0,0,0,H);
+                    sky.addColorStop(0,'#000a05'); sky.addColorStop(0.5,'#001208'); sky.addColorStop(1,'#000500');
+                    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+                    // Acid pool below (visible below platform)
+                    const pool=ctx.createLinearGradient(0,H-60,0,H);
+                    pool.addColorStop(0,'rgba(0,255,100,0.6)'); pool.addColorStop(1,'rgba(0,180,60,0.8)');
+                    ctx.fillStyle=pool; ctx.fillRect(0,H-60,W,80);
+                    // Acid glow on platform underside
+                    ctx.fillStyle='rgba(0,255,100,0.05)'; ctx.fillRect(0,H-120,W,60);
+                    // Cave stalactites
+                    ctx.fillStyle='#021008';
+                    for(let i=0;i<W;i+=70){const h=40+Math.sin(i*0.1)*20; ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+35,h);ctx.lineTo(i+70,0);ctx.fill();}
+                    // Stone chains
+                    [[200,0,200,250],[W-200,0,W-200,250]].forEach(([x1,y1,x2,y2])=>{
+                        ctx.strokeStyle='#1a2a1a'; ctx.lineWidth=6;
+                        for(let y=y1;y<y2;y+=20){ctx.beginPath();ctx.arc(x1,y+10,8,0,Math.PI*2);ctx.stroke();}
+                    });
+                    // Platform
+                    const plat=ctx.createLinearGradient(0,H-100,0,H-60);
+                    plat.addColorStop(0,'#0a1a0a'); plat.addColorStop(1,'#050d05');
+                    ctx.fillStyle=plat; ctx.fillRect(0,H-100,W,50);
+                    // Platform edge glow from acid
+                    ctx.fillStyle='rgba(0,255,80,0.15)'; ctx.fillRect(0,H-105,W,8);
+                    // Acid bubbles
+                    ctx.fillStyle='rgba(0,255,100,0.4)';
+                    [[150,H-55,6],[400,H-50,4],[750,H-58,7],[1050,H-52,5],[900,H-54,3]].forEach(([bx,by,r])=>{
+                        ctx.beginPath();ctx.arc(bx,by,r,0,Math.PI*2);ctx.fill();
+                    });
+                    // Wall slime streaks
+                    ctx.strokeStyle='rgba(0,200,60,0.2)'; ctx.lineWidth=3;
+                    [[0,50,30,350],[W,80,W-20,400],[50,0,60,200],[W-50,0,W-70,180]].forEach(([x1,y1,x2,y2])=>{
+                        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.quadraticCurveTo((x1+x2)/2+20,
+                        (y1+y2)/2,x2,y2); ctx.stroke();
+                    });
+                }
+            },
+            skytemple: {
+                name: 'SKY TEMPLE',
+                thumbGradient: ['#000a1a', '#001030'],
+                thumbAccent: '#4488ff',
+                render: (ctx, W, H) => {
+                    // High altitude temple, purple/blue sky with storm
+                    const sky=ctx.createLinearGradient(0,0,0,H);
+                    sky.addColorStop(0,'#02040e'); sky.addColorStop(0.4,'#080520'); sky.addColorStop(1,'#000005');
+                    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+                    // Stars
+                    ctx.fillStyle='rgba(200,220,255,0.8)';
+                    [[50,30],[200,80],[400,25],[700,60],[1000,40],[1150,90],[900,20],[300,100],[600,15]].forEach(([sx,sy])=>{
+                        ctx.beginPath();ctx.arc(sx,sy,1.5,0,Math.PI*2);ctx.fill();
+                    });
+                    // Lightning flash in clouds
+                    ctx.fillStyle='rgba(80,100,255,0.06)'; ctx.fillRect(0,0,W,200);
+                    // Storm clouds
+                    ctx.fillStyle='rgba(20,15,40,0.7)';
+                    [[100,60,180,60],[400,40,200,50],[800,50,220,55],[1100,70,160,45]].forEach(([cx,cy,cw,ch])=>{
+                        ctx.beginPath(); ctx.ellipse(cx,cy,cw,ch,0,0,Math.PI*2); ctx.fill();
+                    });
+                    // Temple pillars in background
+                    ctx.fillStyle='rgba(20,20,60,0.8)';
+                    [[W/2-200,H-400,50,300],[W/2-60,H-450,50,350],[W/2+120,H-400,50,300]].forEach(([px,py,pw,ph])=>{
+                        ctx.fillRect(px,py,pw,ph);
+                        ctx.fillStyle='rgba(30,30,80,0.8)'; ctx.fillRect(px-10,py,pw+20,20);
+                        ctx.fillStyle='rgba(20,20,60,0.8)';
+                    });
+                    // Floating platform edge glow (electric)
+                    const plat=ctx.createLinearGradient(0,H-100,0,H);
+                    plat.addColorStop(0,'#0a0820'); plat.addColorStop(1,'#030310');
+                    ctx.fillStyle=plat; ctx.fillRect(0,H-100,W,120);
+                    // Electric edge
+                    ctx.strokeStyle='rgba(100,150,255,0.6)'; ctx.lineWidth=2;
+                    ctx.beginPath(); ctx.moveTo(0,H-100); ctx.lineTo(W,H-100); ctx.stroke();
+                    // Lightning bolt in sky
+                    ctx.strokeStyle='rgba(180,200,255,0.7)'; ctx.lineWidth=3;
+                    ctx.beginPath(); ctx.moveTo(600,30); ctx.lineTo(580,120); ctx.lineTo(610,120); ctx.lineTo(590,220); ctx.stroke();
+                    ctx.strokeStyle='rgba(180,200,255,0.2)'; ctx.lineWidth=12;
+                    ctx.beginPath(); ctx.moveTo(600,30); ctx.lineTo(580,120); ctx.lineTo(610,120); ctx.lineTo(590,220); ctx.stroke();
+                }
+            },
+            livingforest: {
+                name: 'LIVING FOREST',
+                thumbGradient: ['#001a00', '#0a1500'],
+                thumbAccent: '#44ff44',
+                render: (ctx, W, H) => {
+                    // Haunted living forest, green mist, skull-faced trees
+                    const sky=ctx.createLinearGradient(0,0,0,H);
+                    sky.addColorStop(0,'#010801'); sky.addColorStop(0.5,'#020f02'); sky.addColorStop(1,'#000200');
+                    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+                    // Full moon through trees
+                    ctx.fillStyle='rgba(200,255,180,0.07)'; ctx.beginPath(); ctx.arc(640,90,80,0,Math.PI*2); ctx.fill();
+                    ctx.fillStyle='rgba(200,255,180,0.04)'; ctx.beginPath(); ctx.arc(640,90,120,0,Math.PI*2); ctx.fill();
+                    // Background trees
+                    ctx.fillStyle='#030d03';
+                    for(let i=0;i<W;i+=90){
+                        const th=200+Math.sin(i)*50;
+                        ctx.fillRect(i+35,H-100-th,20,th+10);
+                        // leafy top
+                        ctx.beginPath();ctx.arc(i+45,H-100-th,35,0,Math.PI*2);ctx.fill();
+                    }
+                    // Face on one tree (centre)
+                    const tx=W/2, ty=H-100-260;
+                    ctx.fillStyle='#031503'; ctx.fillRect(tx-15,H-100-260,30,260);
+                    ctx.fillStyle='rgba(0,80,0,0.7)'; ctx.beginPath();ctx.arc(tx,ty,50,0,Math.PI*2);ctx.fill();
+                    // Eyes (skull-like)
+                    ctx.fillStyle='rgba(0,255,0,0.5)';
+                    ctx.beginPath();ctx.arc(tx-14,ty-5,7,0,Math.PI*2);ctx.fill();
+                    ctx.beginPath();ctx.arc(tx+14,ty-5,7,0,Math.PI*2);ctx.fill();
+                    // Mist
+                    const mist=ctx.createLinearGradient(0,H-140,0,H-60);
+                    mist.addColorStop(0,'rgba(0,60,0,0)'); mist.addColorStop(1,'rgba(0,100,20,0.35)');
+                    ctx.fillStyle=mist; ctx.fillRect(0,H-140,W,100);
+                    // Ground
+                    const gnd=ctx.createLinearGradient(0,H-100,0,H);
+                    gnd.addColorStop(0,'#091209'); gnd.addColorStop(1,'#020502');
+                    ctx.fillStyle=gnd; ctx.fillRect(0,H-100,W,120);
+                    // Root tendrils
+                    ctx.strokeStyle='rgba(0,80,0,0.4)'; ctx.lineWidth=4;
+                    [[W/2,H-100,W/2-80,H-75],[W/2,H-100,W/2+80,H-75],
+                     [W/2-80,H-100,W/2-150,H-80],[W/2+80,H-100,W/2+150,H-80]].forEach(([x1,y1,x2,y2])=>{
+                        ctx.beginPath();ctx.moveTo(x1,y1);ctx.quadraticCurveTo((x1+x2)/2,y1-10,x2,y2);ctx.stroke();
+                    });
+                }
+            }
+        };
+
         this.characters = {
             scorpion: { 
                 color: '#ffcc00', name: 'SCORPION',
@@ -111,6 +327,7 @@ class Game {
     init() {
         console.log("Game Initialized");
         this.setupSelectionListeners();
+        this.setupMapUI();
         this.animate();
     }
 
@@ -118,13 +335,21 @@ class Game {
         window.addEventListener('keydown', (e) => {
             if (this.gameState !== 'selection') return;
 
-            // Player 1 cycle: left/right (A/D) or up/down (W/S) both move through list
+            // Player 1 cycle fighters: A/D
             if (e.code === 'KeyD' || e.code === 'KeyS') this.cycleSelection('p1', 1);
             if (e.code === 'KeyA' || e.code === 'KeyW') this.cycleSelection('p1', -1);
 
-            // Player 2 cycle: arrow keys or P/L and ' to keep same layout as fight
+            // Player 2 cycle fighters: arrow left/right
             if (e.code === 'ArrowRight' || e.code === 'KeyL') this.cycleSelection('p2', 1);
             if (e.code === 'ArrowLeft' || e.code === 'Quote') this.cycleSelection('p2', -1);
+
+            // Player 1 cycle maps: E / R
+            if (e.code === 'KeyE') this.cycleMap(1);
+            if (e.code === 'KeyR') this.cycleMap(-1);
+
+            // Player 2 cycle maps: Up / Down arrows
+            if (e.code === 'ArrowUp') this.cycleMap(1);
+            if (e.code === 'ArrowDown') this.cycleMap(-1);
 
             if (e.code === 'Space') this.startGame();
         });
@@ -144,6 +369,63 @@ class Game {
         }
         this.updateSelectionUI();
     }
+
+    cycleMap(dir) {
+        const mapKeys = Object.keys(this.maps);
+        let idx = mapKeys.indexOf(this.mapChoice);
+        idx = (idx + dir + mapKeys.length) % mapKeys.length;
+        this.mapChoice = mapKeys[idx];
+        this.updateMapUI();
+    }
+
+    setupMapUI() {
+        const grid = document.getElementById('map-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        // Build mini-canvas thumbnails for each map
+        Object.entries(this.maps).forEach(([key, mapData]) => {
+            const slot = document.createElement('div');
+            slot.className = 'map-slot' + (key === this.mapChoice ? ' active-map' : '');
+            slot.dataset.map = key;
+
+            // Mini canvas thumbnail
+            const mini = document.createElement('canvas');
+            mini.width = 120; mini.height = 68;
+            mini.style.width = '100%'; mini.style.height = '100%';
+            const mctx = mini.getContext('2d');
+            // Scale down the full render into 120x68
+            mctx.scale(120/1280, 68/720);
+            mapData.render(mctx, 1280, 720);
+            mctx.setTransform(1,0,0,1,0,0);
+
+            const lbl = document.createElement('div');
+            lbl.className = 'map-slot-label';
+            lbl.textContent = mapData.name;
+
+            slot.appendChild(mini);
+            slot.appendChild(lbl);
+
+            // Click to select
+            slot.addEventListener('click', () => {
+                this.mapChoice = key;
+                this.updateMapUI();
+            });
+
+            grid.appendChild(slot);
+        });
+
+        this.updateMapUI();
+    }
+
+    updateMapUI() {
+        document.querySelectorAll('.map-slot').forEach(slot => {
+            slot.classList.toggle('active-map', slot.dataset.map === this.mapChoice);
+        });
+        const nameEl = document.getElementById('map-name-display');
+        if (nameEl) nameEl.textContent = this.maps[this.mapChoice]?.name || '';
+    }
+
 
     updateSelectionUI() {
         document.getElementById('p1-selected').innerText = this.p1Choice.toUpperCase();
@@ -177,7 +459,7 @@ class Game {
                 attack2: 'KeyX',
                 attack3: 'KeyC',
                 attack4: 'KeyV',
-                block: 'KeyB' // Keep block or use one of attack keys? User said zxcv are attacks.
+                block: 'KeyQ'  // Q = block for P1
             },
             sounds: this.sounds,
             game: this
@@ -200,7 +482,7 @@ class Game {
                 attack2: 'Period', // .
                 attack3: 'Comma',  // ,
                 attack4: 'KeyM',   // M
-                block: 'KeyK',
+                block: 'BracketLeft',  // [ = block for P2
                 special1: 'KeyO',
                 special2: 'KeyI'
             },
@@ -208,9 +490,9 @@ class Game {
             game: this
         });
 
-        // Add P1 special keys
+        // Add P1 special keys (E and R now used for map cycling in selection; in fight they trigger specials)
         this.player1.controls.special1 = 'KeyE';
-        this.player1.controls.special2 = 'KeyQ';
+        this.player1.controls.special2 = 'BracketRight'; // ] for P1 special2
 
         document.querySelector('.p1 .name').innerText = this.player1.name;
         document.querySelector('.p2 .name').innerText = this.player2.name;
@@ -291,44 +573,8 @@ class Game {
             this.shakeTimer--;
         }
 
-        // Background (The Pit Style)
-        const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
-        gradient.addColorStop(0, '#0a0a0f');
-        gradient.addColorStop(0.5, '#151520');
-        gradient.addColorStop(1, '#050505');
-        this.ctx.fillStyle = gradient;
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-        // Moon or light source
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-        this.ctx.beginPath();
-        this.ctx.arc(1000, 150, 80, 0, Math.PI * 2);
-        this.ctx.fill();
-
-        // Far Background structures (mountains/spikes)
-        this.ctx.fillStyle = '#080808';
-        for (let i = 0; i < 5; i++) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(i * 300, 620);
-            this.ctx.lineTo(i * 300 + 150, 400);
-            this.ctx.lineTo(i * 300 + 300, 620);
-            this.ctx.fill();
-        }
-
-        // Bridge/Platform
-        this.ctx.fillStyle = '#111';
-        this.ctx.fillRect(0, 620, this.canvas.width, 100);
-
-        // Spikes below
-        this.ctx.strokeStyle = '#222';
-        this.ctx.lineWidth = 2;
-        for (let i = 0; i < this.canvas.width; i += 40) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(i, 720);
-            this.ctx.lineTo(i + 20, 650);
-            this.ctx.lineTo(i + 40, 720);
-            this.ctx.stroke();
-        }
+        // Draw selected stage background
+        this.drawStage();
 
         // Render Ground Blood
         this.bloodStains.forEach(bs => bs.draw(this.ctx));
@@ -514,6 +760,15 @@ class Game {
                 this[cooldownKey] = now;
             }
         }
+    }
+
+    drawStage() {
+        const mapData = this.maps[this.mapChoice];
+        if (mapData) {
+            mapData.render(this.ctx, this.canvas.width, this.canvas.height);
+        }
+        // Reset line width after stage render
+        this.ctx.lineWidth = 1;
     }
 }
 

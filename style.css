@@ -150,16 +150,78 @@ body {
 }
 
 @keyframes blink {
-    from {
-        opacity: 0.2;
-    }
-
-    to {
-        opacity: 0.8;
-    }
+    from { opacity: 0.2; }
+    to   { opacity: 0.8; }
 }
 
-/* HUD Styling */
+/* ── Map Selection ── */
+#map-selection {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#map-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+#map-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.map-slot {
+    width: 120px;
+    height: 68px;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+}
+
+.map-slot:hover {
+    border-color: #888;
+    transform: scale(1.06);
+}
+
+.map-slot.active-map {
+    border-color: #ffcc00;
+    box-shadow: 0 0 16px #ffcc00, 0 0 30px rgba(255,204,0,0.3);
+}
+
+.map-slot-label {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 4px #000;
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+    padding: 2px 0;
+}
+
+#map-name-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: #ffcc00;
+    text-shadow: 0 0 12px rgba(255,204,0,0.6);
+    min-height: 26px;
+}
+
+/* ── HUD Styling ── */
 #hud {
     position: absolute;
     top: 40px;
