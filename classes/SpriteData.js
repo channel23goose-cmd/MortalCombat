@@ -1324,40 +1324,51 @@ export const SpriteData = {
 };
 
 // Maps letters to fillStyles based on the character's properties
+// Maps letters to fillStyles based on the character's properties
 export function getPixelColor(charId, pixelCode, primaryColor) {
     if (pixelCode === '.') return null;
 
     // Base palette
     const colors = {
-        'B': '#0b0a0a',          // Deepest Black (outlines)
-        'D': '#1e1b1b',          // Dark clothing shadow
-        'B': '#121111',          // Standard dark
-        'M': '#2a2828',          // Mid-tone dark fabric
-        'S': '#e8c0a0',          // MK3 style Skin (more natural)
-        's': '#c6957a',          // MK3 style Skin shadow
-        'H': '#f8f8f8',          // Highlights
-        'w': '#ffffff',          // Eyes / Brightest dots
-        'p': '#3a3a3a',          // Darker grey detail
-        'A': '#d0d0d0',          // Metallic / Greyscale accents
-        'G': '#7a7a7a',          // Muted mid-grey
-        'T': '#4a4a4a',          // Deep trim/shadow
+        'B': '#111111',  // чёрный
+        'D': '#1e1b1b',  // тёмная ткань (MK3 adjusted)
+        'M': '#2a2828',  // средний тёмный (MK3 adjusted)
+        'W': '#ffffff',  // белый / глаза
+        'H': '#f8f8f8',  // блик (MK3 adjusted)
+        'w': '#ffffff',  // глаза (added for compatibility)
+        // Кожа
+        'S': '#e8c0a0',  // MK3 Skin (adjusted)
+        's': '#c6957a',  // MK3 Skin shadow (adjusted)
+        'T': '#edb68b',  // средняя (Лю Канг)
+        't': '#c68e5a',  // тень средней
+        'U': '#5c3a21',  // тёмная (Джакс)
+        'u': '#3d2616',  // тень тёмной
+        // Металл
+        'G': '#b0b0b0',  // светлый (руки Джакса)
+        'g': '#888888',  // тёмный металл
+        // Особые
+        'A': '#dcd2aa',  // акцент (шляпа, повязка, гарпун)
+        'I': '#aaccff',  // лёд (Саб-Зиро)
+        'Z': '#6b8e23',  // зелёная кожа (Рептилия)
+        'z': '#4a5d1e',  // тень зелёной
+        'E': '#ffff99',  // молния (Райден)
+        'p': '#3a3a3a',  // secondary detail (added)
     };
 
     // Primary color shading
     if (pixelCode === 'P') return primaryColor;
-    if (pixelCode === 'L') { // Light primary (highlight)
-        return lightenColor(primaryColor, 30);
-    }
-    if (pixelCode === 'K') { // Dark primary (shadow)
-        return darkenColor(primaryColor, 30);
-    }
+    if (pixelCode === 'L') return lightenColor(primaryColor, 30);
+    if (pixelCode === 'K') return darkenColor(primaryColor, 30);
 
     // Character overrides
-    if (pixelCode === 'A' && charId === 'raiden') return '#dcd2aa'; // Straw hat
+    if (charId === 'raiden' && pixelCode === 'A') return '#dcd2aa'; // Straw hat
+    if (charId === 'liukang' && pixelCode === 'A') return '#cc3333'; // Red headband
+    if (charId === 'scorpion' && pixelCode === 'A') return '#8b4513'; // Brown spear
+    if (charId === 'jax' && pixelCode === 'G') return '#c0c0c0';    // Silver
+    if (charId === 'jax' && pixelCode === 'g') return '#a0a0a0';    // Silver shadow
     if (pixelCode === 'S' && charId === 'jax') return '#5c3a21';    // Darker skin
     if (pixelCode === 's' && charId === 'jax') return '#3d2616';    // Darker skin shadow
     if (pixelCode === 'S' && charId === 'liukang') return '#edb68b'; // Med skin
-    if (pixelCode === 'A' && charId === 'jax') return '#b0b0b0';    // Chrome arms
 
     return colors[pixelCode] || '#ff00ff';
 }
@@ -1368,11 +1379,11 @@ function lightenColor(col, amt) {
     let num = parseInt(col, 16);
     let r = (num >> 16) + amt;
     if (r > 255) r = 255; else if (r < 0) r = 0;
-    let b = ((num >> 8) & 0x00FF) + amt;
-    if (b > 255) b = 255; else if (b < 0) b = 0;
-    let g = (num & 0x0000FF) + amt;
+    let g = ((num >> 8) & 0x00FF) + amt;
     if (g > 255) g = 255; else if (g < 0) g = 0;
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16).padStart(6, '0');
+    let b = (num & 0x0000FF) + amt;
+    if (b > 255) b = 255; else if (b < 0) b = 0;
+    return (usePound ? "#" : "") + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
 }
 
 function darkenColor(col, amt) {
