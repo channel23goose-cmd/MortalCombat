@@ -88,9 +88,8 @@ export class Fighter {
             if (!frame) frame = SpriteData.ninja[state];
             if (!frame) frame = SpriteData.ninja['idle']; // Failsafe
 
-            // Render the matrix
             // Calculate pixel size to fit the width/height (approx 60x150)
-            const pSize = 10;
+            const pSize = this.height / frame.length;
             const mWidth = frame[0].length * pSize; 
             const mHeight = frame.length * pSize; 
             
