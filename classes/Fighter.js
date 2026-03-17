@@ -25,13 +25,7 @@ export class Fighter {
 
         // Determine sprite set
         this.charId = lookupName;
-        if (lookupName === 'scorpion' || lookupName === 'subzero' || lookupName === 'reptile') {
-            this.spriteId = 'ninja';
-        } else if (SpriteData[lookupName]) {
-            this.spriteId = lookupName;
-        } else {
-            this.spriteId = 'ninja'; // Fallback
-        }
+        this.spriteId = SpriteData[lookupName] ? lookupName : 'ninja';
 
         this.health = 100;
         this.isAttacking = false;
@@ -59,6 +53,11 @@ export class Fighter {
         this.currentAttack = { damage: 10, reach: 40 };
 
         this.particles = [];
+
+        // Animation state
+        this.animationFrame = 0;
+        this.animationTimer = 0;
+        this.animationSpeed = 10; // Default frames per second (approx)
     }
 
     draw(ctx) {
@@ -80,13 +79,39 @@ export class Fighter {
             }
 
             let state = 'idle';
-            if (this.isAttacking) state = 'punch';
-            else if (this.isCrouching) state = 'crouch';
-            if (this.isSliding) state = 'crouch';
+            if (this.isDead) state = 'dead';
+            else if (this.isDizzy) state = 'idle'; // Could add dizzy later
+            else if (this.isAttacking) {
+                if (this.currentAttack?.label.toLowerCase().includes('kick')) {
+                    state = this.isLowAttack ? 'kickLow' : 'kickHigh';
+                } else {
+                    state = 'punch';
+                }
+            }
+            else if (!this.onGround) state = 'jump';
+            else if (this.isCrouching || this.isSliding) state = 'crouch';
+            else if (this.velocity.x !== 0) state = 'idle'; // Could add 'walk' later
             
-            let frame = SpriteData[this.spriteId]?.[state];
-            if (!frame) frame = SpriteData.ninja[state];
-            if (!frame) frame = SpriteData.ninja['idle']; // Failsafe
+            let animation = SpriteData[this.spriteId]?.[state] || SpriteData.ninja[state] || SpriteData.ninja['idle'];
+            
+            // Handle multi-frame animation logic
+            let frame;
+            if (Array.isArray(animation[0])) {
+                // It's a multi-frame animation
+                const totalFrames = animation.length;
+                const frameIndex = Math.floor(this.animationFrame) % totalFrames;
+                frame = animation[frameIndex];
+                
+                // Advance animation timer
+                this.animationTimer++;
+                if (this.animationTimer >= (60 / this.animationSpeed)) {
+                    this.animationFrame++;
+                    this.animationTimer = 0;
+                }
+            } else {
+                // Single frame fallback
+                frame = animation;
+            }
 
             // Calculate pixel size to fit the width/height (approx 60x150)
             const pSize = this.height / frame.length;
@@ -99,7 +124,7 @@ export class Fighter {
 
             // Handle freezing tint
             if (this.isFrozen) {
-                ctx.globalAlpha = 0.5; // Draw a blue tint over normal colors? Or just replace colors
+                ctx.globalAlpha = 0.5;
             }
 
             for (let r = 0; r < frame.length; r++) {
