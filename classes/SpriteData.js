@@ -1,24 +1,9 @@
 export const SpriteData = {
-    // Цветовые коды:
-    // P = Primary Color (основной цвет костюма)
-    // L = Light primary (основной цвет + подсветка)
-    // K = Dark primary (основной цвет + тень)
-    // B = Black / тёмная ткань
-    // W = White / глаза
-    // S = Skin светлая (Скорпион, Саб-Зиро, Райден)
-    // s = Skin тень светлая
-    // T = Skin средняя (Лю Канг)
-    // t = Skin тень средняя
-    // U = Skin тёмная (Джакс)
-    // u = Skin тень тёмная
-    // G = Metal светлый (руки Джакса)
-    // g = Metal тёмный
-    // A = Accent (гарпун Скорпиона, шляпа Райдена, повязка Лю Кана)
-    // I = Ice (лёд Саб-Зиро)
-    // Z = Reptile skin (зелёный)
-    // z = Reptile skin shadow
-    // E = Lightning (молния Райдена)
-    // H = Highlight / глаза
+    // P = Primary Color (Ninja suit color, or main color)
+    // S = Skin tone
+    // B = Black / Dark cloth
+    // A = Accent (e.g. metal arms for Jax, white hat for Raiden)
+    // W = White / Eyes
 
     scorpion: {
         idle: [
@@ -81,8 +66,91 @@ export const SpriteData = {
                 ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKAAAAAAAAPPKB..........", // гарпун
-                ".......BKPPPPPPPPKKKKKKKKKKKKKAAAAAAAAPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BBKKKKPPPPKKKKKKKKKKKKKPPPPKKKKBB............",
+                ".........BBBBKKKKKKKKKKKKKKKKKKKKKBBBB..............",
+                ".............BBBBBBBBBBBBBBBBBBBBBB.................",
+                "...............BMMMMB......BMMMMB...................",
+                "..............BMMMMMB......BMMMMMB..................",
+                ".............BMMMMMMB......BMMMMMMB.................",
+                "............BMMMMMMMB......BMMMMMMMB................",
+                "...........BMMMMMMMMB......BMMMMMMMMB...............",
+                "..........BMMMMMMMMMB......BMMMMMMMMMB..............",
+                ".........BMMMMMMMMMMB......BMMMMMMMMMMB.............",
+                ".........BMMMMMMMMMMB......BMMMMMMMMMMB.............",
+                ".........BBBBBBBBBBBB......BBBBBBBBBBBB.............",
+                "........BBMMMMMMMMMMBB....BBMMMMMMMMMMBB............",
+                "........BBMMMMMMMMMMBB....BBMMMMMMMMMMBB............",
+                "........BBBBBBBBBBBBBB....BBBBBBBBBBBBBB............"
+            ],
+            [
+                "....................BBBBBBBBBBBB....................",
+                "................BBBBBBBBBBBBBBBBBBBB................",
+                "..............BBKKKKKKKKKKKKKKKKKKKKBB..............",
+                "............BBKKKKPPPPPPPPPPPPPPPPKKKKBB............",
+                "...........BKKKPPPPPPPPPPPPPPPPPPPPPPKKKB...........",
+                "..........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
+                ".........BKKPPPPPPBBBBBBBBBBBBBBBBPPPPPPKKB.........",
+                ".........BKPPPPBBSHHHWWSSSSHHSWSSBBPPPPKKB.........",
+                "........BKPPPPBBSHHHWWSSSSHHHSSWSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSSSSSHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSHHHHHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBBSSSSSSSSSSSSSSSSSSBBPPPPKKB........",
+                "........BKPPPPBBBBBBBBBBBBBBBBBBBBBBPPPPKKB........",
+                ".........BKPPPPPPPPBBBBBBBBBBBBPPPPPPPPKKB.........",
+                ".........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
+                "..........BKKKPPPPPPPPPPPPPPPPPPPPPPKKKB...........",
+                "...........BBBBKKKKKKKKKKKKKKKKKKKKBBBB.............",
+                "...............BBBBBBBBBBBBBBBBBBBB.................",
+                ".....................BMMMMMMB.......................",
+                "...................BBBBBBBBBBBB.....................",
+                ".................BBKKKKKKKKKKKKBB...................",
+                "...............BBKKKPPPPPPPPPKKKBB..................",
+                ".............BBKKPPPPPPPPPPPPPPPKKBB................",
+                "............BKKPPPPPPPPPPPPPPPPPPPKKB...............",
+                "...........BKKPPPPPPLLLLLLPPPPPPPPPKKB..............",
+                "..........BKKPPPPPLLLLLLLLLLLPPPPPPPKKB.............",
+                ".........BKKPPPPLLLLLLLLLLLLLLLPPPPPPKKB............",
+                "........BKKPPPPLLLLMMMBBBMMMLLLLPPPPPPKKB...........",
+                "........BKPPPPLLLLMMBBBBBBBMMLLLLPPPPPPKKB..........",
+                "........BKPPPPLLLMMBBBBBBBBBMMLLLLPPPPPKKB..........",
+                "........BKPPPPLLLMMBBBBBBBBBMMLLLLPPPPPKKB..........",
+                "........BKPPPPLLLMMBBBBBBBBBMMLLLLPPPPPKKB..........",
+                "........BKPPPPLLLMMBBBBBBBBBMMLLLLPPPPPKKB..........",
+                "........BKPPPPLLLMMBBBBBBBBBMMLLLLPPPPPKKB..........",
+                "........BKPPPPLLLLMMBBBBBBBMMLLLLPPPPPPKKB..........",
+                "........BKKPPPPLLLLMMMBBBMMMLLLLPPPPPPKKB............",
+                ".........BKKPPPPLLLLLLLLLLLLLLLPPPPPPKKB............",
+                "..........BKKPPPPPLLLLLLLLLLLPPPPPPPKKB.............",
+                "...........BKKPPPPPPLLLLLLPPPPPPPPPKKB..............",
+                "............BKKPPPPPPPPPPPPPPPPPPPKKB...............",
+                ".............BBKKKKKKPPPPPPPKKKKKKBB................",
+                "...............BBBBBBPPPPPPPBBBBBB..................",
+                "....................PPPPPPPPP.......................",
+                "....................PPPPPPPPP.......................",
+                "...................BKPPPPPPPKB......................",
+                ".................BBKPPPPPPPPPKBB....................",
+                "...............BBKKPPPPPPPPPPPKKBB..................",
+                "..............BKKKPPPPPPPPPPPPPKKKB.................",
+                ".............BKKPPPPPPPPPPPPPPPPPKKB................",
+                "............BKKPPPPPPPPPPPPPPPPPPPKKB...............",
+                "...........BKKPPPPPPPPPPPPPPPPPPPPPKKB..............",
+                "..........BKKPPPPPPPPPKKKPPPPPPPPPPPKKB.............",
+                ".........BKKPPPPPPPPPKKKKKPPPPPPPPPPPKKB............",
+                "........BKKPPPPPPPPPKKKKKKKPPPPPPPPPPPKKB...........",
+                ".......BKKPPPPPPPPPKKKKKKKKKPPPPPPPPPPPKKB..........",
+                ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
@@ -145,9 +213,7 @@ export const SpriteData = {
                 ".............BMMMMMB......BMMMMMB..................",
                 "..........BBBBBBBBBB......BBBBBBBBBB................",
                 ".........BBMMMMMMMMBB....BBMMMMMMMMBB...............",
-                ".........BBBBBBBBBBBB....BBBBBBBBBBBB...............",
-                "..............AAAA..................................", // гарпун на поясе
-                "..............AAAA.................................."
+                ".........BBBBBBBBBBBB....BBBBBBBBBBBB..............."
             ]
         ],
         punch: [
@@ -202,8 +268,9 @@ export const SpriteData = {
                 ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKAAAAAAAAPPKB..........", // гарпун летит
-                ".......BKPPPPPPPPKKKKKKKKKKKKKAAAAAAAAPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
@@ -226,7 +293,6 @@ export const SpriteData = {
             ]
         ],
     },
-
     subzero: {
         idle: [
             [
@@ -288,8 +354,9 @@ export const SpriteData = {
                 ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKIIIIIIIIPKB..........", // лёд на груди
-                ".......BKPPPPPPPPKKKKKKKKKKKKKIIIIIIIIPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
@@ -352,9 +419,7 @@ export const SpriteData = {
                 ".............BMMMMMB......BMMMMMB..................",
                 "..........BBBBBBBBBB......BBBBBBBBBB................",
                 ".........BBMMMMMMMMBB....BBMMMMMMMMBB...............",
-                ".........BBBBBBBBBBBB....BBBBBBBBBBBB...............",
-                "..............IIII..................................", // ледяные шипы
-                "..............IIII.................................."
+                ".........BBBBBBBBBBBB....BBBBBBBBBBBB..............."
             ]
         ],
         punch: [
@@ -408,8 +473,10 @@ export const SpriteData = {
                 ".......BKKPPPPPPPPPKKKKKKKKKPPPPPPPPPPPKKB..........",
                 ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKIIIIIIIIPKB..........", // ледяной удар
-                ".......BKPPPPPPPPKKKKKKKKKKKKKIIIIIIIIPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
                 ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
@@ -432,7 +499,6 @@ export const SpriteData = {
             ]
         ],
     },
-
     reptile: {
         idle: [
             [
@@ -443,11 +509,11 @@ export const SpriteData = {
                 "...........BKKKPPPPPPPPPPPPPPPPPPPPPPKKKB...........",
                 "..........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
                 ".........BKKPPPPPPBBBBBBBBBBBBBBBBPPPPPPKKB.........",
-                ".........BKPPPPBBSHHHWWZZZZHHZWZZBBPPPPKKB.........", // зелёная кожа
-                "........BKPPPPBBSHHHWWZZZZHHHZZWZZBBPPPPKKB........",
-                "........BKPPPPBZZZZZZZZZZHHHZZZZZZBBPPPPKKB........",
-                "........BKPPPPBZZZZZZHHHHHHHZZZZZZBBPPPPKKB........",
-                "........BKPPPPBBZZZZZZZZZZZZZZZZZZBBPPPPKKB........",
+                ".........BKPPPPBBSHHHWWSSSSHHSWSSBBPPPPKKB.........",
+                "........BKPPPPBBSHHHWWSSSSHHHSSWSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSSSSSHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSHHHHHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBBSSSSSSSSSSSSSSSSSSBBPPPPKKB........",
                 "........BKPPPPBBBBBBBBBBBBBBBBBBBBBBPPPPKKB........",
                 ".........BKPPPPPPPPBBBBBBBBBBBBPPPPPPPPKKB.........",
                 ".........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
@@ -530,11 +596,11 @@ export const SpriteData = {
                 "...........BKKKPPPPPPPPPPPPPPPPPPPPPPKKKB...........",
                 "..........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
                 ".........BKKPPPPPPBBBBBBBBBBBBBBBBPPPPPPKKB.........",
-                ".........BKPPPPBBSHHHWWZZZZHHZWZZBBPPPPKKB.........",
-                "........BKPPPPBBSHHHWWZZZZHHHZZWZZBBPPPPKKB........",
-                "........BKPPPPBZZZZZZZZZZHHHZZZZZZBBPPPPKKB........",
-                "........BKPPPPBZZZZZZHHHHHHHZZZZZZBBPPPPKKB........",
-                "........BKPPPPBBZZZZZZZZZZZZZZZZZZBBPPPPKKB........",
+                ".........BKPPPPBBSHHHWWSSSSHHSWSSBBPPPPKKB.........",
+                "........BKPPPPBBSHHHWWSSSSHHHSSWSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSSSSSHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSHHHHHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBBSSSSSSSSSSSSSSSSSSBBPPPPKKB........",
                 "........BKPPPPBBBBBBBBBBBBBBBBBBBBBBPPPPKKB........",
                 ".........BKPPPPPPPPBBBBBBBBBBBBPPPPPPPPKKB.........",
                 ".........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
@@ -559,12 +625,10 @@ export const SpriteData = {
                 ".............BMMMMMB......BMMMMMB..................",
                 "..........BBBBBBBBBB......BBBBBBBBBB................",
                 ".........BBMMMMMMMMBB....BBMMMMMMMMBB...............",
-                ".........BBBBBBBBBBBB....BBBBBBBBBBBB...............",
-                "..............ZZZZ..................................", // язык
-                "..............ZZZZ.................................."
+                ".........BBBBBBBBBBBB....BBBBBBBBBBBB..............."
             ]
         ],
-        punch: [
+        kickHigh: [
             [
                 "....................BBBBBBBBBBBB....................",
                 "................BBBBBBBBBBBBBBBBBBBB................",
@@ -573,11 +637,11 @@ export const SpriteData = {
                 "...........BKKKPPPPPPPPPPPPPPPPPPPPPPKKKB...........",
                 "..........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
                 ".........BKKPPPPPPBBBBBBBBBBBBBBBBPPPPPPKKB.........",
-                ".........BKPPPPBBSHHHWWZZZZHHZWZZBBPPPPKKB.........",
-                "........BKPPPPBBSHHHWWZZZZHHHZZWZZBBPPPPKKB........",
-                "........BKPPPPBZZZZZZZZZZHHHZZZZZZBBPPPPKKB........",
-                "........BKPPPPBZZZZZZHHHHHHHZZZZZZBBPPPPKKB........",
-                "........BKPPPPBBZZZZZZZZZZZZZZZZZZBBPPPPKKB........",
+                ".........BKPPPPBBSHHHWWSSSSHHSWSSBBPPPPKKB.........",
+                "........BKPPPPBBSHHHWWSSSSHHHSSWSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSSSSSHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBSSSSSSHHHHHHHSSSSSSBBPPPPKKB........",
+                "........BKPPPPBBSSSSSSSSSSSSSSSSSSBBPPPPKKB........",
                 "........BKPPPPBBBBBBBBBBBBBBBBBBBBBBPPPPKKB........",
                 ".........BKPPPPPPPPBBBBBBBBBBBBPPPPPPPPKKB.........",
                 ".........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPKKB..........",
@@ -585,44 +649,50 @@ export const SpriteData = {
                 "...........BBBBKKKKKKKKKKKKKKKKKKKKBBBB.............",
                 ".....................BMMMMMMB.......................",
                 "...................BBBBBBBBBBBB.....................",
-                ".........BBBBBBBBBBKKKKKKKKKKKKBB...................",
-                "......BBBPPPPPPPPPBBKKKPPPPPPPPPKKKBB...............",
-                "....BBPPPPPPPPPPPPPPBKKPPPPPPPPPPPPPPPKKBB..........",
-                "....BPPPPPPPPPPPPPPPPPBKPPPPPPPPPPPPPPPKKB..........",
-                "...BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "..BPPPPPPLLLLLLPPPPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "..BPPPPLLLLLLLLLLLPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "..BPPPPLLLLLLLLLLLPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "..BPPPPLLLLLLLLLLLPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "..BPPPPLLLLLLLLLLLPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "..BPPPPPPLLLLLLPPPPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB.........",
-                "....BBPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB..........",
-                "......BBBPPPPPPPPPBBKKPPPPPPPPPKKKKKBB..............",
-                ".........BBBBBBBBBBBBBBBBBBBBBBBBBB.................",
-                "....................PPPPPPPPP.......................",
-                "....................PPPPPPPPP.......................",
-                "...................BKPPPPPPPKB......................",
-                ".................BBKPPPPPPPPPKBB....................",
-                "...............BBKKPPPPPPPPPPPKKBB..................",
-                "..............BKKKPPPPPPPPPPPPPKKKB.................",
-                ".............BKKPPPPPPPPPPPPPPPPPKKB................",
+                ".................BBKKKKKKKKKKKKBB...................",
+                "...............BBKKKPPPPPPPPPKKKBB..................",
+                ".............BBKKPPPPPPPPPPPPPPPKKBB................",
                 "............BKKPPPPPPPPPPPPPPPPPPPKKB...............",
                 "...........BKKPPPPPPPPPPPPPPPPPPPPPKKB..............",
-                "..........BKKPPPPPPPPPKKKPPPPPPPPPPPKKB.............",
-                ".........BKKPPPPPPPPPKKKKKPPPPPPPPPPPKKB............",
-                "........BKKPPPPPPPPPKKKKKKKPPPPPPPPPPPKKB...........",
-                ".......BKKPPPPPPPPPKKKKKKKKKPPPPPPPPPPPKKB..........",
-                ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKZZZZZZZZPKB..........", // зелёные когти
-                ".......BKPPPPPPPPKKKKKKKKKKKKKZZZZZZZZPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BBKKKKPPPPKKKKKKKKKKKKKPPPPKKKKBB............",
-                ".........BBBBKKKKKKKKKKKKKKKKKKKKKBBBB..............",
+                "..........BKKPPPPPPPPPPPPPPPPPPPPPPPKKB.............",
+                ".........BKKPPPPPPPPPPPPPPPPPPPPPPPPPKKB............",
+                "........BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB...........",
+                "........BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB..........",
+                "........BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB..........",
+                "........BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB..........",
+                "........BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB..........",
+                "........BKPPPPLLLLPPPPPPPPPPPPPPPPPPPPPPKB..........",
+                "........BKKKPPLLLLLLPPPPPPPPPPPPPPPPPPKKB...........",
+                ".........BBKPPLLLLLLLLLPPPPPPPPPPPPPPPKB............",
+                "...........BKPPLLLLLLLLLLLPPPPPPPPPPPKB.............",
+                "............BKPPLLLLLLLLLLLLLPPPPPPKKB..............",
+                ".............BBKPPPPPPPPPPPPPPPKKKBB................",
+                "...............BBBBPPPPPPPPBBBBPBB..................",
+                "....................PPPPBBBB........................",
+                "....................PPPPBBBB........................",
+                "...................BKPPPPPPKB.......................",
+                ".................BBKPPPPPPPPKB......................",
+                "...............BBKKPPPPPPPPPPKB.....................",
+                "..............BKKKPPPPPPPPPPPPKB....................",
+                ".............BKKPPPPPPPPPPPPPPPPB...................",
+                "............BKKPPPPPPPPPPPPPPPPPPB..................",
+                "...........BKKPPPPPPPPPPPPPPPPPPPPB.................",
+                "..........BKKPPPPPPPPPBBBBPPPPPPPKKB................",
+                ".........BKKPPPPPPPPBBBBBBBBPPPPPKKB................",
+                "........BKKPPPPPPPPBBBBBBBBBBPPPPKKB................",
+                ".......BKKPPPPPPPPBBBBBBBBBBBBPPPKKB................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BKPPPPPPPPBBBBBBBBBBBBBBPPKB.................",
+                ".......BBKKKKPPPPBBBBBBBBBBBBBBPPKKBB...............",
+                ".........BBBBKKKKBBBBBBBBBBBBBBKKBBBB...............",
                 ".............BBBBBBBBBBBBBBBBBBBBBB.................",
                 "...............BMMMMB......BMMMMB...................",
                 "..............BMMMMMB......BMMMMMB..................",
@@ -638,8 +708,24 @@ export const SpriteData = {
                 "........BBBBBBBBBBBBBB....BBBBBBBBBBBBBB............"
             ]
         ],
+        dead: [
+            [
+                "....................................................",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB..........",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                "....BKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.........."
+            ]
+        ]
     },
-
     liukang: {
         idle: [
             [
@@ -647,43 +733,43 @@ export const SpriteData = {
                 "................BBBBBBBBBBBBBBBBBBBB................",
                 "..............BBMMMMMMMMMMMMMMMMMMMMBB..............",
                 "............BBMMMMMMMMMMMMMMMMMMMMMMMMBB............",
-                "...........BMMMMMMTTTTTTTTTTTTTTMMMMMMMMB...........", // средняя кожа
-                "..........BMMMMTTTTTTTTTTTTTTTTTTTTMMMMMMB..........",
-                ".........BMMMTTTTTTTTTTTTTTTTTTTTTTTTMMMMMB.........",
-                ".........BMTTTTTTHHHWWTTTTHHTWSSHHHHTTMMMMB.........",
-                "........BMTTTTTTHHHWWTTTTHHHSSWSSHHHHTTMMMMB........",
-                "........BMTTTTTTTTTTTTTTTHHHTTTTTTTTTTMMMMB........",
-                "........BMTTTTTTTTTTHHHHHHHHHTTTTTTTTTMMMMB........",
-                "........BMTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMMMB........",
-                "........BMMMMTTTTTTTTTTTTTTTTTTTTTTTTMMMMMB........",
-                ".........BMMMMMMTTTTTTTTTTTTTTTTTTMMMMMMMB.........",
+                "...........BMMMMMMSSSSSSSSSSSSSSMMMMMMMMB...........",
+                "..........BMMMMSSSSSSSSSSSSSSSSSSSSMMMMMMB..........",
+                ".........BMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB.........",
+                ".........BMSSSSSSHHHWWSSSSHHSWSSHHHHSSMMMMB.........",
+                "........BMSSSSSSHHHWWSSSSHHHSSWSSHHHHSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSHHHSSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSHHHHHHHHHSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSSSSSSSSSSSSSSMMMMB........",
+                "........BMMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB........",
+                ".........BMMMMMMSSSSSSSSSSSSSSSSSSMMMMMMMB.........",
                 "..........BMMMMMMMMMMMMMMMMMMMMMMMMMMMMMB..........",
                 "...........BBBBMMMMMMMMMMMMMMMMMMMMBBBB.............",
                 "...............BBBBBBBBBBBBBBBBBBBB.................",
-                ".....................BAAAAAAB.......................", // красная повязка
-                "...................BBAAAAAAAABB.....................",
-                ".................BBAAAAAAAAAAAABB...................",
-                "...............BBAAAAAAAAAAAAAAAABB..................",
-                ".............BBAAAAAAAAAAAAAAAAAAAABB................",
-                "............BAAAAAAAAAAAAAAAAAAAAAAAB...............",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAAAB..............",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAB.............",
-                ".........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB............",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                "........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB...........",
-                ".........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB............",
-                ".........BAAAAAAAAAAAAAAAAAAAAAAAAAAAB.............",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAB..............",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAB...............",
-                "............BAAAAAAAAAAAAAAAAAAAAAB................",
-                ".............BBAAAAAAAAAAAAAAAAAAB.................",
+                ".....................BSSSSSSB.......................",
+                "...................BBSSSSSSSSBB.....................",
+                ".................BBSSSSSSSSSSSSBB...................",
+                "...............BBSSSSSSSSSSSSSSSSBB..................",
+                ".............BBSSSSSSSSSSSSSSSSSSSSBB................",
+                "............BSSSSSSSSSSSSSSSSSSSSSSSSB...............",
+                "...........BSSSSSSSSSSSSSSSSSSSSSSSSSSB..............",
+                "..........BSSSSSSSSSSSSSSssssSSSSSSSSSB.............",
+                ".........BSSSSSSSSSSSSsssssssssSSSSSSSSB............",
+                "........BSSSSSSSSSSsssssssssssssssSSSSSSB...........",
+                "........BSSSSSSSsssssssssssssssssssssSSSB...........",
+                "........BSSSSSsssssssssssssssssssssssssSB..........",
+                "........BSSSSssssssssssssssssssssssssssSB..........",
+                "........BSSSsssssssssssssssssssssssssssSB..........",
+                "........BSSSsssssssssssssssssssssssssssSB..........",
+                "........BSSSSSsssssssssssssssssssssssssSB..........",
+                "........BSSSSSSSsssssssssssssssssssssSSSB...........",
+                "........BSSSSSSSSSsssssssssssssssssSSSSSB...........",
+                ".........BSSSSSSSSSSsssssssssssssSSSSSSB............",
+                ".........BSSSSSSSSSSSSSSSSSSSSSSSSSSSSB.............",
+                "..........BSSSSSSSSSSSSSSSSSSSSSSSSSSB..............",
+                "...........BSSSSSSSSSSSSSSSSSSSSSSSSB...............",
+                "............BSSSSSSSSSSSSSSSSSSSSSSB................",
+                ".............BBSSSSSSSSSSSSSSSSSSBB.................",
                 "...............BBBBBBPPPPPPPBBBBBB..................",
                 "....................PPPPPPPPP.......................",
                 "....................PPPPPPPPP.......................",
@@ -734,31 +820,31 @@ export const SpriteData = {
                 "................BBBBBBBBBBBBBBBBBBBB................",
                 "..............BBMMMMMMMMMMMMMMMMMMMMBB..............",
                 "............BBMMMMMMMMMMMMMMMMMMMMMMMMBB............",
-                "...........BMMMMMMTTTTTTTTTTTTTTMMMMMMMMB...........",
-                "..........BMMMMTTTTTTTTTTTTTTTTTTTTMMMMMMB..........",
-                ".........BMMMTTTTTTTTTTTTTTTTTTTTTTTTMMMMMB.........",
-                ".........BMTTTTTTHHHWWTTTTHHTWSSHHHHTTMMMMB.........",
-                "........BMTTTTTTHHHWWTTTTHHHSSWSSHHHHTTMMMMB........",
-                "........BMTTTTTTTTTTTTTTTHHHTTTTTTTTTTMMMMB........",
-                "........BMTTTTTTTTTTHHHHHHHHHTTTTTTTTTMMMMB........",
-                "........BMTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMMMB........",
-                "........BMMMMTTTTTTTTTTTTTTTTTTTTTTTTMMMMMB........",
-                ".........BMMMMMMTTTTTTTTTTTTTTTTTTMMMMMMMB.........",
+                "...........BMMMMMMSSSSSSSSSSSSSSMMMMMMMMB...........",
+                "..........BMMMMSSSSSSSSSSSSSSSSSSSSMMMMMMB..........",
+                ".........BMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB.........",
+                ".........BMSSSSSSHHHWWSSSSHHSWSSHHHHSSMMMMB.........",
+                "........BMSSSSSSHHHWWSSSSHHHSSWSSHHHHSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSHHHSSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSHHHHHHHHHSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSSSSSSSSSSSSSSMMMMB........",
+                "........BMMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB........",
+                ".........BMMMMMMSSSSSSSSSSSSSSSSSSMMMMMMMB.........",
                 "..........BMMMMMMMMMMMMMMMMMMMMMMMMMMMMMB..........",
                 "...........BBBBMMMMMMMMMMMMMMMMMMMMBBBB.............",
                 "...............BBBBBBBBBBBBBBBBBBBB.................",
-                ".....................BAAAAAAB.......................",
-                "...................BBAAAAAAAABB.....................",
-                ".................BBAAAAAAAAAAAABB...................",
-                "...............BBAAAAAAAAAAAAAAAABB..................",
-                ".............BBAAAAAAAAAAAAAAAAAAAABB................",
-                "............BAAAAAAAAAAAAAAAAAAAAAAAB...............",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAAAB..............",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAB.............",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAB.............",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAAAB...............",
-                "............BAAAAAAAAAAAAAAAAAAAAAAAB................",
-                ".............BBAAAAAAAAAAAAAAAAAAB.................",
+                ".....................BSSSSSSB.......................",
+                "...................BBSSSSSSSSBB.....................",
+                ".................BBSSSSSSSSSSSSBB...................",
+                "...............BBSSSSSSSSSSSSSSSSBB..................",
+                ".............BBSSSSSSSSSSSSSSSSSSSSBB................",
+                "............BSSSSSSSSSSSSSSSSSSSSSSSSB...............",
+                "...........BSSSSSSSSSSSSSSSSSSSSSSSSSSB..............",
+                "..........BSSSSSSSSSSSSSSSSSSSSSSSSSSSB..............",
+                "..........BSSSSSSSSSSSSSSSSSSSSSSSSSSSB..............",
+                "...........BSSSSSSSSSSSSSSSSSSSSSSSSSB...............",
+                "............BSSSSSSSSSSSSSSSSSSSSSSSB................",
+                ".............BBSSSSSSSSSSSSSSSSSSBB.................",
                 "...............BBBBBBPPPPPPPBBBBBB..................",
                 "....................PPPPPPPPP.......................",
                 "....................PPPPPPPPP.......................",
@@ -767,9 +853,7 @@ export const SpriteData = {
                 "...............BBKKPPPPPPPPPPPKKBB..................",
                 "..............BBBBBBB.......BBBBBBB.................",
                 ".............BBBBBBBB.......BBBBBBBB................",
-                ".............BBBBBBBB.......BBBBBBBB................",
-                "..............AAAA..................................", // повязка видна
-                "..............AAAA.................................."
+                ".............BBBBBBBB.......BBBBBBBB................"
             ]
         ],
         punch: [
@@ -778,36 +862,36 @@ export const SpriteData = {
                 "................BBBBBBBBBBBBBBBBBBBB................",
                 "..............BBMMMMMMMMMMMMMMMMMMMMBB..............",
                 "............BBMMMMMMMMMMMMMMMMMMMMMMMMBB............",
-                "...........BMMMMMMTTTTTTTTTTTTTTMMMMMMMMB...........",
-                "..........BMMMMTTTTTTTTTTTTTTTTTTTTMMMMMMB..........",
-                ".........BMMMTTTTTTTTTTTTTTTTTTTTTTTTMMMMMB.........",
-                ".........BMTTTTTTHHHWWTTTTHHTWSSHHHHTTMMMMB.........",
-                "........BMTTTTTTHHHWWTTTTHHHSSWSSHHHHTTMMMMB........",
-                "........BMTTTTTTTTTTTTTTTHHHTTTTTTTTTTMMMMB........",
-                "........BMTTTTTTTTTTHHHHHHHHHTTTTTTTTTMMMMB........",
-                "........BMTTTTTTTTTTTTTTTTTTTTTTTTTTTTMMMMB........",
-                "........BMMMMTTTTTTTTTTTTTTTTTTTTTTTTMMMMMB........",
-                ".........BMMMMMMTTTTTTTTTTTTTTTTTTMMMMMMMB.........",
+                "...........BMMMMMMSSSSSSSSSSSSSSMMMMMMMMB...........",
+                "..........BMMMMSSSSSSSSSSSSSSSSSSSSMMMMMMB..........",
+                ".........BMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB.........",
+                ".........BMSSSSSSHHHWWSSSSHHSWSSHHHHSSMMMMB.........",
+                "........BMSSSSSSHHHWWSSSSHHHSSWSSHHHHSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSHHHSSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSHHHHHHHHHSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSSSSSSSSSSSSSSMMMMB........",
+                "........BMMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB........",
+                ".........BMMMMMMSSSSSSSSSSSSSSSSSSMMMMMMMB.........",
                 "..........BMMMMMMMMMMMMMMMMMMMMMMMMMMMMMB..........",
                 "...........BBBBMMMMMMMMMMMMMMMMMMMMBBBB.............",
                 "...............BBBBBBBBBBBBBBBBBBBB.................",
-                ".....................BAAAAAAB.......................",
-                "......BBBBBBBBBBBBBTTBTTTTTTTTT.....................",
-                "....BBTTTTTTTTTTTTTBBTTTTTTTTT......................",
-                "....BTTTTTTTTTTTTTTTTTTTTTTTTT......................",
-                "..BBTTTTTTTTTTTTTTTTTTTTTTTTTT......................",
-                "..BTTTTTTTTTTTTTTTTTTTTTTTTTTT......................",
-                "..BTTTTTTTTTLLLLLLTTTTTTTTTTTT......................",
-                "..BTTTTTTTLLLLLLLLLLLTTTTTTTTT......................",
-                "..BTTTTTLLLLLLLLLLLLLLLTTTTTTT......................",
-                "..BTTTLLLLLLLLLLLLLLLLLLLTTTT.......................",
-                "..BTTTLLLLLLLLLLLLLLLLLLLTTTT.......................",
-                "..BTTTTTLLLLLLLLLLLLLLLTTTTTTT......................",
-                "..BTTTTTTTLLLLLLLLLLLTTTTTTTTT......................",
-                "..BBTTTTTTTTTLLLLLTTTTTTTTTTT......................",
-                "....BTTTTTTTTTTTTTTTTTTTTTTTTT......................",
-                "....BBTTTTTTTTTTTTTTTTTTTTTTT.......................",
-                "......BBBBBBBBBBBBBBBBBBBBBBB.......................",
+                ".....................BSSSSSSB.......................",
+                "......BBBBBBBBBBBBBSSBSSSSSSSSBB....................",
+                "....BBSSSSSSSSSSSSSBBSSSSSSSSSS.....................",
+                "....BSSSSSSSSSSSSSSSSSSSSSSSSSS.....................",
+                "..BBSSSSSSSSSSSSSSSSSSSSSSSSSSS.....................",
+                "..BSSSSSSSSSSSSSSSSSSSSSSSSSSSS.....................",
+                "..BSSSSSSSSSsssssssssSSSSSSSSSS.....................",
+                "..BSSSSSSSssssssssssssssSSSSSSS.....................",
+                "..BSSSSSssssssssssssssssssSSSSS.....................",
+                "..BSSSssssssssssssssssssssssSS......................",
+                "..BSSSssssssssssssssssssssssSS......................",
+                "..BSSSSSssssssssssssssssssSSSSS.....................",
+                "..BSSSSSSSssssssssssssssSSSSSSS.....................",
+                "..BBSSSSSSSSSsssssssssSSSSSSSSS.....................",
+                "....BSSSSSSSSSSSSSSSSSSSSSSSSSS.....................",
+                "....BBSSSSSSSSSSSSSSSSSSSSSSSS......................",
+                "......BBBBBBBBBBBBBBBBBBBBBBBB......................",
                 "...................BBBBBBPPPPPPPBBBBBB..............",
                 "....................PPPPPPPPP.......................",
                 "....................PPPPPPPPP.......................",
@@ -816,13 +900,44 @@ export const SpriteData = {
                 "...............BBKKPPPPPPPPPPPKKBB..................",
                 "..............BKBBBBB.......BBBBBBB.................",
                 ".............BBBBBBBB.......BBBBBBBB................",
-                ".............BBBBBBBB.......BBBBBBBB................",
-                "..............AAAA..................................", // удар ногой
-                "..............AAAA.................................."
+                ".............BBBBBBBB.......BBBBBBBB................"
             ]
         ],
+        kickHigh: [
+            [
+                "....................BBBBBBBBBBBB....................",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB..........",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                "....BKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.........."
+            ]
+        ],
+        dead: [
+            [
+                "....................................................",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB..........",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                "....BKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.........."
+            ]
+        ]
     },
-
     jax: {
         idle: [
             [
@@ -830,43 +945,44 @@ export const SpriteData = {
                 "................BBBBBBBBBBBBBBBBBBBB................",
                 "..............BBMMMMMMMMMMMMMMMMMMMMBB..............",
                 "............BBMMMMMMMMMMMMMMMMMMMMMMMMBB............",
-                "...........BMMMMMMUUUUUUUUUUUUUUMMMMMMMMB...........", // тёмная кожа
-                "..........BMMMMUUUUUUUUUUUUUUUUUUUUMMMMMMB..........",
-                ".........BMMMUUUUUUUUUUUUUUUUUUUUUUUUMMMMMB.........",
-                ".........BMUUUUUUHHHWWUUUUHHUWSSHHHHUUMMMMB.........",
-                "........BMUUUUUUHHHWWUUUUHHHUSWSSHHHHUUMMMMB........",
-                "........BMUUUUUUUUUUUUUUUHHHUUUUUUUUUUMMMMB........",
-                "........BMUUUUUUUUUHHHHHHHHHUUUUUUUUUUMMMMB........",
-                "........BMUUUUUUUUUUUUUUUUUUUUUUUUUUUUMMMMB........",
-                "........BMMMMUUUUUUUUUUUUUUUUUUUUUUUUMMMMMB........",
-                ".........BMMMMMMUUUUUUUUUUUUUUUUUUMMMMMMMB.........",
+                "...........BMMMMMMSSSSSSSSSSSSSSMMMMMMMMB...........", // Head
+                "..........BMMMMSSSSSSSSSSSSSSSSSSSSMMMMMMB..........",
+                ".........BMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB.........",
+                ".........BMSSSSSSHHHWWSSSSHHSWSSHHHHSSMMMMB.........",
+                "........BMSSSSSSHHHWWSSSSHHHSSWSSHHHHSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSHHHSSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSHHHHHHHHHSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSSSSSSSSSSSSSSMMMMB........",
+                "........BMMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB........",
+                ".........BMMMMMMSSSSSSSSSSSSSSSSSSMMMMMMMB.........",
                 "..........BMMMMMMMMMMMMMMMMMMMMMMMMMMMMMB..........",
                 "...........BBBBMMMMMMMMMMMMMMMMMMMMBBBB.............",
                 "...............BBBBBBBBBBBBBBBBBBBB.................",
-                ".....................BGGGGGGB.......................", // металлические руки
-                "...................BBGGGGGGGGBB.....................",
-                ".................BBGGGGGGGGGGGGBB...................",
-                "...............BBGGGGGGGGGGGGGGGGBB.................",
-                ".............BBGGGGGGGGGGGGGGGGGGGGBB................",
-                "............BGGGGGGGGGGGGGGGGGGGGGGGGB...............",
-                "...........BGGGGGGGGGGGGGGGGGGGGGGGGGGB..............",
-                "..........BGGGGGGGGGGGGGGGGGGGGGGGGGGGGB.............",
-                ".........BGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGB............",
-                ".........BGGGGGGGGUUUUUUUUUUUUUUGGGGGGGGB............", // торс
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                ".........BGGGGGGGUUUUUUUUUUUUUUUUGGGGGGGB............",
-                "...............BBBBBBPPPPPPPBBBBBB..................",
+                ".....................BSSSSSSB.......................",
+                "...................BBSSSSSSSSBB.....................",
+                ".................BBGGGGGGGGGGGG.....................", // Chrome Arms (Metal)
+                "...............BBGGGGGGGGGGGGGGGG...................",
+                ".............BBGGGGGGGGGGGGGGGGGGGG..................",
+                "............BGGGGGGGGGGGGGGGGGGGGGGGG...............",
+                "...........BGGGGGGGGGGGGGGGGGGGGGGGGGG..............",
+                "..........BGGGGGGGGGGGGGGGGGGGGGGGGGGGG.............",
+                ".........BGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG............",
+                ".........BGGGGGGGGSSSSSSSSSSSSGGGGGGGGGG............", // Bare chest with metal arms
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                ".........BGGGGGGSSSSSSSSSSSSSSSSGGGGGGGG............",
+                "...............BBBBBBPPPPPPPBBBBBB..................", // Purple/Black Pants
                 "....................PPPPPPPPP.......................",
                 "....................PPPPPPPPP.......................",
                 "...................BKPPPPPPPKB......................",
@@ -916,28 +1032,28 @@ export const SpriteData = {
                 "................BBBBBBBBBBBBBBBBBBBB................",
                 "..............BBMMMMMMMMMMMMMMMMMMMMBB..............",
                 "............BBMMMMMMMMMMMMMMMMMMMMMMMMBB............",
-                "...........BMMMMMMUUUUUUUUUUUUUUMMMMMMMMB...........",
-                "..........BMMMMUUUUUUUUUUUUUUUUUUUUMMMMMMB..........",
-                ".........BMMMUUUUUUUUUUUUUUUUUUUUUUUUMMMMMB.........",
-                ".........BMUUUUUUHHHWWUUUUHHUWSSHHHHUUMMMMB.........",
-                "........BMUUUUUUHHHWWUUUUHHHUSWSSHHHHUUMMMMB........",
-                "........BMUUUUUUUUUUUUUUUHHHUUUUUUUUUUMMMMB........",
-                "........BMUUUUUUUUUHHHHHHHHHUUUUUUUUUUMMMMB........",
-                "........BMUUUUUUUUUUUUUUUUUUUUUUUUUUUUMMMMB........",
-                "........BMMMMUUUUUUUUUUUUUUUUUUUUUUUUMMMMMB........",
-                ".........BMMMMMMUUUUUUUUUUUUUUUUUUMMMMMMMB.........",
+                "...........BMMMMMMSSSSSSSSSSSSSSMMMMMMMMB...........",
+                "..........BMMMMSSSSSSSSSSSSSSSSSSSSMMMMMMB..........",
+                ".........BMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB.........",
+                ".........BMSSSSSSHHHWWSSSSHHSWSSHHHHSSMMMMB.........",
+                "........BMSSSSSSHHHWWSSSSHHHSSWSSHHHHSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSHHHSSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSHHHHHHHHHSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSSSSSSSSSSSSSSMMMMB........",
+                "........BMMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB........",
+                ".........BMMMMMMSSSSSSSSSSSSSSSSSSMMMMMMMB.........",
                 "..........BMMMMMMMMMMMMMMMMMMMMMMMMMMMMMB..........",
                 "...........BBBBMMMMMMMMMMMMMMMMMMMMBBBB.............",
                 "...............BBBBBBBBBBBBBBBBBBBB.................",
-                ".....................BGGGGGGB.......................",
-                "...................BBGGGGGGGGBB.....................",
-                ".................BBGGGGGGGGGGGGBB...................",
-                "...............BBGGGGGGGGGGGGGGGGBB.................",
-                ".............BBGGGGGGGGGGGGGGGGGGGGBB................",
-                "............BGGGGGGGGGGGGGGGGGGGGGGGGB...............",
-                "...........BGGGGGGGGGGGGGGGGGGGGGGGGGGB..............",
-                "..........BGGGGGGGGGGGGGGGGGGGGGGGGGGGGB.............",
-                ".........BBGGGGGGGGGGGGGGGGGGGGGGGGGGGGB.............",
+                ".....................BSSSSSSB.......................",
+                "...................BBSSSSSSSSBB.....................",
+                ".................BBGGGGGGGGGGGG.....................",
+                "...............BBGGGGGGGGGGGGGGGG...................",
+                ".............BBGGGGGGGGGGGGGGGGGGGG..................",
+                "............BGGGGGGGGGGGGGGGGGGGGGGGG...............",
+                "...........BGGGGGGGGGGGGGGGGGGGGGGGGGG..............",
+                "..........BGGGGGGGGGGGGGGGGGGGGGGGGGGGG.............",
+                ".........BBGGGGGGGGGGGGGGGGGGGGGGGGGGGG.............",
                 "..........BBBBBBGGGGGGGGGGGGGGGGGGGGBB..............",
                 "............BBBBBBBBBBBBBBBBBBBBBBBB................",
                 "...............BBBBBBPPPPPPPBBBBBB..................",
@@ -948,9 +1064,7 @@ export const SpriteData = {
                 "..............BKKKPPPPPPPPPPPPPKKKB.................",
                 ".............BKKPPPPPPPPPPPPPPPPPKKB................",
                 ".............BBMMMMMMMMMMBB....BBMMMMMMMMMMBB.......",
-                ".............BBBBBBBBBBBBBB....BBBBBBBBBBBBBB.......",
-                "..............GGGG..................................", // металлические руки
-                "..............GGGG.................................."
+                ".............BBBBBBBBBBBBBB....BBBBBBBBBBBBBB......."
             ]
         ],
         punch: [
@@ -959,16 +1073,16 @@ export const SpriteData = {
                 "................BBBBBBBBBBBBBBBBBBBB................",
                 "..............BBMMMMMMMMMMMMMMMMMMMMBB..............",
                 "............BBMMMMMMMMMMMMMMMMMMMMMMMMBB............",
-                "...........BMMMMMMUUUUUUUUUUUUUUMMMMMMMMB...........",
-                "..........BMMMMUUUUUUUUUUUUUUUUUUUUMMMMMMB..........",
-                ".........BMMMUUUUUUUUUUUUUUUUUUUUUUUUMMMMMB.........",
-                ".........BMUUUUUUHHHWWUUUUHHUWSSHHHHUUMMMMB.........",
-                "........BMUUUUUUHHHWWUUUUHHHUSWSSHHHHUUMMMMB........",
-                "........BMUUUUUUUUUUUUUUUHHHUUUUUUUUUUMMMMB........",
-                "........BMUUUUUUUUUHHHHHHHHHUUUUUUUUUUMMMMB........",
-                "........BMUUUUUUUUUUUUUUUUUUUUUUUUUUUUMMMMB........",
-                "........BMMMMUUUUUUUUUUUUUUUUUUUUUUUUMMMMMB........",
-                ".........BMMMMMMUUUUUUUUUUUUUUUUUUMMMMMMMB.........",
+                "...........BMMMMMMSSSSSSSSSSSSSSMMMMMMMMB...........",
+                "..........BMMMMSSSSSSSSSSSSSSSSSSSSMMMMMMB..........",
+                ".........BMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB.........",
+                ".........BMSSSSSSHHHWWSSSSHHSWSSHHHHSSMMMMB.........",
+                "........BMSSSSSSHHHWWSSSSHHHSSWSSHHHHSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSHHHSSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSHHHHHHHHHSSSSSSSSSMMMMB........",
+                "........BMSSSSSSSSSSSSSSSSSSSSSSSSSSSSMMMMB........",
+                "........BMMMMSSSSSSSSSSSSSSSSSSSSSSSSMMMMMB........",
+                ".........BMMMMMMSSSSSSSSSSSSSSSSSSMMMMMMMB.........",
                 "..........BMMMMMMMMMMMMMMMMMMMMMMMMMMMMMB..........",
                 "...........BBBBMMMMMMMMMMMMMMMMMMMMBBBB.............",
                 "...............BBBBBBBBBBBBBBBBBBBB.................",
@@ -994,235 +1108,256 @@ export const SpriteData = {
                 "..............BKKKPPPPPPPPPPPPPKKKB.................",
                 ".............BKKPPPPPPPPPPPPPPPPPKKB................",
                 ".............BBMMMMMMMMMMBB....BBMMMMMMMMMMBB.......",
-                ".............BBBBBBBBBBBBBB....BBBBBBBBBBBBBB.......",
-                "..............GGGGGGGGGGGGGGGGGGGGGGGGGGGG.........", // мощный удар
-                "..............GGGGGGGGGGGGGGGGGGGGGGGGGGGG........."
+                ".............BBBBBBBBBBBBBB....BBBBBBBBBBBBBB......."
             ]
         ],
+        kickHigh: [
+            [
+                "....................BBBBBBBBBBBB....................",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB..........",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                "....BKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.........."
+            ]
+        ],
+        dead: [
+            [
+                "....................................................",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB..........",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                "....BKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKB......",
+                "....BKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKB......",
+                ".....BBKKKPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKKBB.......",
+                ".......BBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBB........",
+                ".........BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.........."
+            ]
+        ]
     },
-
     raiden: {
         idle: [
-            [
-                "....................BBBBBBBBBBBB....................",
-                "................BBBAAAAAAAAAAAAAAABBB...............",
-                "..............BBAAAAAAAAAAAAAAAAAAAAABB.............",
-                "............BBAAAAAAAAAAAAAAAAAAAAAAAAABB...........",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB..........",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
-                "..........BAAAAAAAABBBBBBBBBBBBBBBBAAAAAAAB.........",
-                "...........BAAAAAABSSSSSSSSSSSSSSSSBAAAAAAB.........",
-                "............BAAAABSSSSSSSSSSSSSSSSSSBAAAAB..........",
-                ".............BAABSSSSSHHHWWSSSSHHSWSBAAB............",
-                "..............BBSSSSSHHHWWSSSSHHHSSWSSBB............",
-                "..............BBSSSSSSSSSSSSSSSHHHSSSSBB............",
-                "..............BBSSSSSSSSSSHHHHHHHHHSSSBB............",
-                "..............BBSSSSSSSSSSSSSSSSSSSSSSBB............",
-                "...............BBSSSSSSSSSSSSSSSSSSSSBB.............",
-                "................BBSSSSSSSSSSSSSSSSSSBB..............",
-                "..................BBBBBBBBBBBBBBBBBB................",
-                "....................BMMMMMMMMMMMMB..................",
-                "....................PPPPPPPPPPPPPP..................",
-                "...................BPPPPPPPPPPPPPPB.................",
-                "..................BPPPPPPPPPPPPPPPPB................",
-                ".................BPPPPPPPPPPPPPPPPPPB...............",
-                "................BPPPPPPPPPPPPPPPPPPPPB..............",
-                "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
-                "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
-                ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
-                ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
-                "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
-                "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
-                "................BPPPPPPPPPPPPPPPPPPPPB..............",
-                ".................BBPPPPPPPPPPPPPPPPBB...............",
-                "...................BBPPPPPPPPPPPPBB.................",
-                ".....................BBBBBBBBBBBB...................",
-                "...................BKPPPPPPPKB......................",
-                ".................BBKPPPPPPPPPKBB....................",
-                "...............BBKKPPPPPPPPPPPKKBB..................",
-                "..............BKKKPPPPPPPPPPPPPKKKB.................",
-                ".............BKKPPPPPPPPPPPPPPPPPKKB................",
-                "............BKKPPPPPPPPPPPPPPPPPPPKKB...............",
-                "...........BKKPPPPPPPPPPPPPPPPPPPPPKKB..............",
-                "..........BKKPPPPPPPPPKKKPPPPPPPPPPPKKB.............",
-                ".........BKKPPPPPPPPPKKKKKPPPPPPPPPPPKKB............",
-                "........BKKPPPPPPPPPKKKKKKKPPPPPPPPPPPKKB...........",
-                ".......BKKPPPPPPPPPKKKKKKKKKPPPPPPPPPPPKKB..........",
-                ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKEEEEEEEEEEB..........", // молнии
-                ".......BKPPPPPPPPKKKKKKKKKKKKKEEEEEEEEEEB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
-                ".......BBKKKKPPPPKKKKKKKKKKKKKPPPPKKKKBB............",
-                ".........BBBBKKKKKKKKKKKKKKKKKKKKKBBBB..............",
-                ".............BBBBBBBBBBBBBBBBBBBBBB.................",
-                "...............BMMMMB......BMMMMB...................",
-                "..............BMMMMMB......BMMMMMB..................",
-                ".............BMMMMMMB......BMMMMMMB.................",
-                "............BMMMMMMMB......BMMMMMMMB................",
-                "...........BMMMMMMMMB......BMMMMMMMMB...............",
-                "..........BMMMMMMMMMB......BMMMMMMMMMB..............",
-                ".........BMMMMMMMMMMB......BMMMMMMMMMMB.............",
-                ".........BBBBBBBBBBBB......BBBBBBBBBBBB.............",
-                "........BBMMMMMMMMMMBB....BBMMMMMMMMMMBB............",
-                "........BBMMMMMMMMMMBB....BBMMMMMMMMMMBB............",
-                "........BBBBBBBBBBBBBB....BBBBBBBBBBBBBB............"
-            ]
+            "....................BBBBBBBBBBBB....................",
+            "................BBBAAAAAAAAAAAAAAABBB...............", // Hat
+            "..............BBAAAAAAAAAAAAAAAAAAAAABB.............",
+            "............BBAAAAAAAAAAAAAAAAAAAAAAAAABB...........",
+            "...........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB..........",
+            "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
+            "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
+            "..........BAAAAAAAABBBBBBBBBBBBBBBBAAAAAAAB.........",
+            "...........BAAAAAABSSSSSSSSSSSSSSSSBAAAAAAB.........",
+            "............BAAAABSSSSSSSSSSSSSSSSSSBAAAAB..........",
+            ".............BAABSSSSSHHHWWSSSSHHSWSBAAB............",
+            "..............BBSSSSSHHHWWSSSSHHHSSWSSBB............", // Head under hat
+            "..............BBSSSSSSSSSSSSSSSHHHSSSSBB............",
+            "..............BBSSSSSSSSSSHHHHHHHHHSSSBB............",
+            "..............BBSSSSSSSSSSSSSSSSSSSSSSBB............",
+            "...............BBSSSSSSSSSSSSSSSSSSSSBB.............",
+            "................BBSSSSSSSSSSSSSSSSSSBB..............",
+            "..................BBBBBBBBBBBBBBBBBB................",
+            "....................BMMMMMMMMMMMMB..................",
+            "....................PPPPPPPPPPPPPP..................", // White robes (P)
+            "...................BPPPPPPPPPPPPPPB.................",
+            "..................BPPPPPPPPPPPPPPPPB................",
+            ".................BPPPPPPPPPPPPPPPPPPB...............",
+            "................BPPPPPPPPPPPPPPPPPPPPB..............",
+            "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
+            "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
+            ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
+            ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
+            "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
+            "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
+            "................BPPPPPPPPPPPPPPPPPPPPB..............",
+            ".................BBPPPPPPPPPPPPPPPPBB...............",
+            "...................BBPPPPPPPPPPPPBB.................",
+            ".....................BBBBBBBBBBBB...................",
+            "...................BKPPPPPPPKB......................", // Thighs robes
+            ".................BBKPPPPPPPPPKBB....................",
+            "...............BBKKPPPPPPPPPPPKKBB..................",
+            "..............BKKKPPPPPPPPPPPPPKKKB.................",
+            ".............BKKPPPPPPPPPPPPPPPPPKKB................",
+            "............BKKPPPPPPPPPPPPPPPPPPPKKB...............",
+            "...........BKKPPPPPPPPPPPPPPPPPPPPPKKB..............",
+            "..........BKKPPPPPPPPPKKKPPPPPPPPPPPKKB.............",
+            ".........BKKPPPPPPPPPKKKKKPPPPPPPPPPPKKB............",
+            "........BKKPPPPPPPPPKKKKKKKPPPPPPPPPPPKKB...........",
+            ".......BKKPPPPPPPPPKKKKKKKKKPPPPPPPPPPPKKB..........",
+            ".......BKPPPPPPPPPKKKKKKKKKKKPPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BKPPPPPPPPKKKKKKKKKKKKKPPPPPPPPPPKB..........",
+            ".......BBKKKKPPPPKKKKKKKKKKKKKPPPPKKKKBB............",
+            ".........BBBBKKKKKKKKKKKKKKKKKKKKKBBBB..............",
+            ".............BBBBBBBBBBBBBBBBBBBBBB.................",
+            "...............BMMMMB......BMMMMB...................", // Boots
+            "..............BMMMMMB......BMMMMMB..................",
+            ".............BMMMMMMB......BMMMMMMB.................",
+            "............BMMMMMMMB......BMMMMMMMB................",
+            "...........BMMMMMMMMB......BMMMMMMMMB...............",
+            "..........BMMMMMMMMMB......BMMMMMMMMMB..............",
+            ".........BMMMMMMMMMMB......BMMMMMMMMMMB.............",
+            ".........BBBBBBBBBBBB......BBBBBBBBBBBB.............",
+            "........BBMMMMMMMMMMBB....BBMMMMMMMMMMBB............",
+            "........BBMMMMMMMMMMBB....BBMMMMMMMMMMBB............",
+            "........BBBBBBBBBBBBBB....BBBBBBBBBBBBBB............"
         ],
         crouch: [
-            [
-                "....................................................",
-                "....................................................",
-                "....................BBBBBBBBBBBB....................",
-                "................BBBAAAAAAAAAAAAAAABBB...............",
-                "..............BBAAAAAAAAAAAAAAAAAAAAABB.............",
-                "............BBAAAAAAAAAAAAAAAAAAAAAAAAABB...........",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB..........",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
-                "..........BAAAAAAAABBBBBBBBBBBBBBBBAAAAAAAB.........",
-                "...........BAAAAAABSSSSSSSSSSSSSSSSBAAAAAAB.........",
-                "............BAAAABSSSSSSSSSSSSSSSSSSBAAAAB..........",
-                ".............BAABSSSSSHHHWWSSSSHHSWSBAAB............",
-                "..............BBSSSSSHHHWWSSSSHHHSSWSSBB............",
-                "..............BBSSSSSSSSSSSSSSSHHHSSSSBB............",
-                "..............BBSSSSSSSSSSHHHHHHHHHSSSBB............",
-                "..............BBSSSSSSSSSSSSSSSSSSSSSSBB............",
-                "...............BBSSSSSSSSSSSSSSSSSSSSBB.............",
-                "................BBSSSSSSSSSSSSSSSSSSBB..............",
-                "..................BBBBBBBBBBBBBBBBBB................",
-                "....................BMMMMMMMMMMMMB..................",
-                "...................BPPPPPPPPPPPPPPB.................",
-                "..................BPPPPPPPPPPPPPPPPB................",
-                ".................BPPPPPPPPPPPPPPPPPPB...............",
-                "................BPPPPPPPPPPPPPPPPPPPPB..............",
-                "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
-                "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
-                ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
-                ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
-                "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
-                "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
-                "................BPPPPPPPPPPPPPPPPPPPPB..............",
-                ".................BBPPPPPPPPPPPPPPPPBB...............",
-                "...................BBPPPPPPPPPPPPBB.................",
-                ".....................BBBBBBBBBBBB...................",
-                "..................BBBBBBBBBBBBBBBBBBBB..............",
-                ".................BBMMMMMMMMMMBB....BBMMMMMMMMMMBB...",
-                ".................BBBBBBBBBBBBBB....BBBBBBBBBBBBBB...",
-                "..................EEEEEEEEEEEE......................", // молнии вокруг
-                "..................EEEEEEEEEEEE......................"
-            ]
+            "....................................................",
+            "....................................................",
+            "....................BBBBBBBBBBBB....................",
+            "................BBBAAAAAAAAAAAAAAABBB...............",
+            "..............BBAAAAAAAAAAAAAAAAAAAAABB.............",
+            "............BBAAAAAAAAAAAAAAAAAAAAAAAAABB...........",
+            "...........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB..........",
+            "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
+            "..........BAAAAAAAABBBBBBBBBBBBBBBBAAAAAAAB.........",
+            "...........BAAAAAABSSSSSSSSSSSSSSSSBAAAAAAB.........",
+            "............BAAAABSSSSSSSSSSSSSSSSSSBAAAAB..........",
+            ".............BAABSSSSSHHHWWSSSSHHSWSBAAB............",
+            "..............BBSSSSSHHHWWSSSSHHHSSWSSBB............",
+            "..............BBSSSSSSSSSSSSSSSHHHSSSSBB............",
+            "..............BBSSSSSSSSSSHHHHHHHHHSSSBB............",
+            "..............BBSSSSSSSSSSSSSSSSSSSSSSBB............",
+            "...............BBSSSSSSSSSSSSSSSSSSSSBB.............",
+            "................BBSSSSSSSSSSSSSSSSSSBB..............",
+            "..................BBBBBBBBBBBBBBBBBB................",
+            "....................BMMMMMMMMMMMMB..................",
+            "...................BPPPPPPPPPPPPPPB.................",
+            "..................BPPPPPPPPPPPPPPPPB................",
+            ".................BPPPPPPPPPPPPPPPPPPB...............",
+            "................BPPPPPPPPPPPPPPPPPPPPB..............",
+            "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
+            "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
+            ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "...........BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPB.........",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPB..........",
+            ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPB...........",
+            "..............BPPPPPPPPPPPPPPPPPPPPPPPPB............",
+            "...............BPPPPPPPPPPPPPPPPPPPPPPB.............",
+            "................BPPPPPPPPPPPPPPPPPPPPB..............",
+            ".................BBPPPPPPPPPPPPPPPPBB...............",
+            "...................BBPPPPPPPPPPPPBB.................",
+            ".....................BBBBBBBBBBBB...................",
+            "..................BBBBBBBBBBBBBBBBBBBB..............",
+            ".................BBMMMMMMMMMMBB....BBMMMMMMMMMMBB...",
+            ".................BBBBBBBBBBBBBB....BBBBBBBBBBBBBB..."
         ],
         punch: [
-            [
-                "....................BBBBBBBBBBBB....................",
-                "................BBBAAAAAAAAAAAAAAABBB...............",
-                "..............BBAAAAAAAAAAAAAAAAAAAAABB.............",
-                "............BBAAAAAAAAAAAAAAAAAAAAAAAAABB...........",
-                "...........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB..........",
-                "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
-                "..........BAAAAAAAABBBBBBBBBBBBBBBBAAAAAAAB.........",
-                "...........BAAAAAABSSSSSSSSSSSSSSSSBAAAAAAB.........",
-                "............BAAAABSSSSSSSSSSSSSSSSSSBAAAAB..........",
-                "............BAABSSSSSHHHWWSSSSHHSWSBAAB.............",
-                ".............BBSSSSSHHHWWSSSSHHHSSWSSBB.............",
-                "............BBSSSSSSSSSSSSSSSHHHSSSSBB..............",
-                "............BBSSSSSSSSSSHHHHHHHHHSSSBB..............",
-                "............BBSSSSSSSSSSSSSSSSSSSSSSBB..............",
-                ".............BBSSSSSSSSSSSSSSSSSSSSBB...............",
-                "..............BBSSSSSSSSSSSSSSSSSSBB................",
-                "................BBBBBBBBBBBBBBBBBB..................",
-                "....................PPPPPPPPPPPPPPBBBBBBBBBBBBBBBB..",
-                "...................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPBB.",
-                "..................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPBB",
-                ".................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "...............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "..............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "..............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "...............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                ".................BBPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
-                "...................BBPPPPPPPPPPPPBBBBBBBBBBBBBBBBBB.",
-                ".....................BBBBBBBBBBBB...................",
-                "...................BKPPPPPPPKB......................",
-                ".................BBKPPPPPPPPPKBB....................",
-                "...............BBKKPPPPPPPPPPPKKBB..................",
-                "..............BKKKPPPPPPPPPPPPPKKKB.................",
-                ".............BKKPPPPPPPPPPPPPPPPPKKB................",
-                ".............BBMMMMMMMMMMBB....BBMMMMMMMMMMBB.......",
-                ".............BBBBBBBBBBBBBB....BBBBBBBBBBBBBB.......",
-                "..............EEEEEEEEEEEEEEEEEEEEEEEEEEEE.........", // электрический разряд
-                "..............EEEEEEEEEEEEEEEEEEEEEEEEEEEE........."
-            ]
-        ],
+            "....................BBBBBBBBBBBB....................",
+            "................BBBAAAAAAAAAAAAAAABBB...............",
+            "..............BBAAAAAAAAAAAAAAAAAAAAABB.............",
+            "............BBAAAAAAAAAAAAAAAAAAAAAAAAABB...........",
+            "...........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB..........",
+            "..........BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB.........",
+            "..........BAAAAAAAABBBBBBBBBBBBBBBBAAAAAAAB.........",
+            "...........BAAAAAABSSSSSSSSSSSSSSSSBAAAAAAB.........",
+            "............BAAAABSSSSSSSSSSSSSSSSSSBAAAAB..........",
+            "............BAABSSSSSHHHWWSSSSHHSWSBAAB.............",
+            ".............BBSSSSSHHHWWSSSSHHHSSWSSBB.............",
+            "............BBSSSSSSSSSSSSSSSHHHSSSSBB..............",
+            "............BBSSSSSSSSSSHHHHHHHHHSSSBB..............",
+            "............BBSSSSSSSSSSSSSSSSSSSSSSBB..............",
+            ".............BBSSSSSSSSSSSSSSSSSSSSBB...............",
+            "..............BBSSSSSSSSSSSSSSSSSSBB................",
+            "................BBBBBBBBBBBBBBBBBB..................",
+            "....................PPPPPPPPPPPPPPBBBBBBBBBBBBBBBB..",
+            "...................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPBB.",
+            "..................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPBB",
+            ".................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.", // Robe arm extended
+            "...............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "..............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            ".............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "..............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "...............BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "................BPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            ".................BBPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.",
+            "...................BBPPPPPPPPPPPPBBBBBBBBBBBBBBBBBB.",
+            ".....................BBBBBBBBBBBB...................",
+            "...................BKPPPPPPPKB......................",
+            ".................BBKPPPPPPPPPKBB....................",
+            "...............BBKKPPPPPPPPPPPKKBB..................",
+            "..............BKKKPPPPPPPPPPPPPKKKB.................",
+            ".............BKKPPPPPPPPPPPPPPPPPKKB................",
+            ".............BBMMMMMMMMMMBB....BBMMMMMMMMMMBB.......",
+            ".............BBBBBBBBBBBBBB....BBBBBBBBBBBBBB......."
+        ]
     }
 };
 
-// Функция получения цвета пикселя (остаётся без изменений)
+// Maps letters to fillStyles based on the character's properties
 export function getPixelColor(charId, pixelCode, primaryColor) {
     if (pixelCode === '.') return null;
 
+    // Base palette
     const colors = {
-        'B': '#111111',  // чёрный
-        'D': '#1a1a1a',  // тёмная ткань
-        'M': '#333333',  // средний тёмный
-        'W': '#ffffff',  // белый / глаза
-        'H': '#ffffff',  // блик
-        // Кожа
-        'S': '#fcd2b6',  // светлая (Скорпион, Саб-Зиро, Райден)
-        's': '#e0b094',  // тень светлой
-        'T': '#edb68b',  // средняя (Лю Канг)
-        't': '#c68e5a',  // тень средней
-        'U': '#5c3a21',  // тёмная (Джакс)
-        'u': '#3d2616',  // тень тёмной
-        // Металл
-        'G': '#b0b0b0',  // светлый (руки Джакса)
-        'g': '#888888',  // тёмный металл
-        // Особые
-        'A': '#dcd2aa',  // акцент (шляпа, повязка, гарпун)
-        'I': '#aaccff',  // лёд (Саб-Зиро)
-        'Z': '#6b8e23',  // зелёная кожа (Рептилия)
-        'z': '#4a5d1e',  // тень зелёной
-        'E': '#ffff99',  // молния (Райден)
+        'B': '#0b0a0a',          // Deepest Black (outlines)
+        'D': '#1e1b1b',          // Dark clothing shadow
+        'B': '#121111',          // Standard dark
+        'M': '#2a2828',          // Mid-tone dark fabric
+        'S': '#e8c0a0',          // MK3 style Skin (more natural)
+        's': '#c6957a',          // MK3 style Skin shadow
+        'H': '#f8f8f8',          // Highlights
+        'w': '#ffffff',          // Eyes / Brightest dots
+        'p': '#3a3a3a',          // Darker grey detail
+        'A': '#d0d0d0',          // Metallic / Greyscale accents
+        'G': '#7a7a7a',          // Muted mid-grey
+        'T': '#4a4a4a',          // Deep trim/shadow
     };
 
+    // Primary color shading
     if (pixelCode === 'P') return primaryColor;
-    if (pixelCode === 'L') return lightenColor(primaryColor, 30);
-    if (pixelCode === 'K') return darkenColor(primaryColor, 30);
+    if (pixelCode === 'L') { // Light primary (highlight)
+        return lightenColor(primaryColor, 30);
+    }
+    if (pixelCode === 'K') { // Dark primary (shadow)
+        return darkenColor(primaryColor, 30);
+    }
 
-    if (charId === 'raiden' && pixelCode === 'A') return '#d2b48c'; // соломенная шляпа
-    if (charId === 'liukang' && pixelCode === 'A') return '#cc3333'; // красная повязка
-    if (charId === 'scorpion' && pixelCode === 'A') return '#8b4513'; // коричневый гарпун
-    if (charId === 'jax' && pixelCode === 'G') return '#c0c0c0';    // серебро
-    if (charId === 'jax' && pixelCode === 'g') return '#a0a0a0';    // тень серебра
+    // Character overrides
+    if (pixelCode === 'A' && charId === 'raiden') return '#dcd2aa'; // Straw hat
+    if (pixelCode === 'S' && charId === 'jax') return '#5c3a21';    // Darker skin
+    if (pixelCode === 's' && charId === 'jax') return '#3d2616';    // Darker skin shadow
+    if (pixelCode === 'S' && charId === 'liukang') return '#edb68b'; // Med skin
+    if (pixelCode === 'A' && charId === 'jax') return '#b0b0b0';    // Chrome arms
 
     return colors[pixelCode] || '#ff00ff';
 }
@@ -1233,11 +1368,11 @@ function lightenColor(col, amt) {
     let num = parseInt(col, 16);
     let r = (num >> 16) + amt;
     if (r > 255) r = 255; else if (r < 0) r = 0;
-    let g = ((num >> 8) & 0x00FF) + amt;
-    if (g > 255) g = 255; else if (g < 0) g = 0;
-    let b = (num & 0x0000FF) + amt;
+    let b = ((num >> 8) & 0x00FF) + amt;
     if (b > 255) b = 255; else if (b < 0) b = 0;
-    return (usePound ? "#" : "") + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+    let g = (num & 0x0000FF) + amt;
+    if (g > 255) g = 255; else if (g < 0) g = 0;
+    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16).padStart(6, '0');
 }
 
 function darkenColor(col, amt) {

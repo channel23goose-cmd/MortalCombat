@@ -61,15 +61,16 @@ export class Fighter {
     }
 
     draw(ctx) {
-        // Draw Shadow
-        ctx.fillStyle = 'rgba(0,0,0,0.3)';
+        // Draw Shadow (Dithered look)
+        ctx.fillStyle = 'rgba(0,0,0,0.4)';
         ctx.beginPath();
-        ctx.ellipse(this.position.x + this.width / 2, 620, 50, 15, 0, 0, Math.PI * 2);
+        ctx.ellipse(this.position.x + this.width / 2, 620, 50, 12, 0, 0, Math.PI * 2);
         ctx.fill();
 
         // Draw Player Body (Pixel Art)
         if (!this.isTeleporting) {
             ctx.save();
+            ctx.imageSmoothingEnabled = false; // Keep it pixelated!
 
             // Draw blocking effect
             if (this.isBlocking) {
