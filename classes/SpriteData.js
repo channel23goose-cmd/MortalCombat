@@ -961,7 +961,7 @@ export const SpriteData = {
                 ".....................BSSSSSSB.......................",
                 "...................BBSSSSSSSSBB.....................",
                 ".................BBGGGGGGGGGGGG.....................", // Chrome Arms (Metal)
-                "...............BBGGGGGGGGGGGGGGGG...................", 
+                "...............BBGGGGGGGGGGGGGGGG...................",
                 ".............BBGGGGGGGGGGGGGGGGGGGG..................",
                 "............BGGGGGGGGGGGGGGGGGGGGGGGG...............",
                 "...........BGGGGGGGGGGGGGGGGGGGGGGGGGG..............",
@@ -1366,7 +1366,7 @@ export const SpriteData = {
 // Maps letters to fillStyles based on the character's properties
 export function getPixelColor(charId, pixelCode, primaryColor) {
     if (pixelCode === '.') return null;
-    
+
     // Base palette
     const colors = {
         'B': '#111111',          // Deep Black (outlines)
@@ -1399,7 +1399,7 @@ export function getPixelColor(charId, pixelCode, primaryColor) {
     if (pixelCode === 'S' && charId === 'liukang') return '#edb68b'; // Med skin
     if (pixelCode === 'A' && charId === 'jax') return '#b0b0b0';    // Chrome arms
 
-    return colors[pixelCode] || '#ff00ff';
+    return colors[pixelCode] || '#fffffd';
 }
 
 function lightenColor(col, amt) {
