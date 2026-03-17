@@ -134,17 +134,37 @@ export class Fighter {
         ctx.font = '12px Outfit';
         ctx.fillText(this.name, this.position.x, this.position.y - 10);
 
-        // Draw attack box (visual flair)
+        // Draw attack box (visual flair) — uses per-attack glowColor and hitboxH
         if (this.isAttacking && !this.isTeleporting) {
-            ctx.fillStyle = this.color;
-            ctx.globalAlpha = 0.5;
-            ctx.fillRect(
-                this.attackBox.position.x,
-                this.attackBox.position.y,
-                this.attackBox.width,
-                this.attackBox.height
-            );
+            const glowColor = this.currentAttack?.glowColor || `rgba(255,255,255,0.5)`;
+            const bx = this.attackBox.position.x;
+            const by = this.attackBox.position.y;
+            const bw = this.attackBox.width;
+            const bh = this.attackBox.height;
+
+            // Outer glow
+            ctx.shadowColor = glowColor;
+            ctx.shadowBlur = 18;
+            ctx.fillStyle = glowColor;
+            ctx.globalAlpha = 0.85;
+            ctx.fillRect(bx, by, bw, bh);
             ctx.globalAlpha = 1.0;
+            ctx.shadowBlur = 0;
+
+            // Bright inner border
+            ctx.strokeStyle = glowColor.replace(/[\d.]+\)$/, '1)');
+            ctx.lineWidth = 2;
+            ctx.strokeRect(bx, by, bw, bh);
+
+            // Attack label
+            if (this.currentAttack?.label) {
+                ctx.font = 'bold 11px monospace';
+                ctx.fillStyle = '#fff';
+                ctx.globalAlpha = 0.9;
+                const lx = this.facing === 'right' ? bx : bx + bw - 70;
+                ctx.fillText(this.currentAttack.label, lx, by - 6);
+                ctx.globalAlpha = 1.0;
+            }
         }
 
         // Draw Particles
@@ -285,6 +305,7 @@ export class Fighter {
 
         this.currentAttack = strikeInfo;
         this.attackBox.width = strikeInfo.reach;
+        this.attackBox.height = strikeInfo.hitboxH || 50;
 
         if (this.sounds) {
             type === 'punch' ? this.sounds.playPunch() : this.sounds.playKick();

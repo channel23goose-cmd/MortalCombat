@@ -45,60 +45,62 @@ class Game {
         this.characters = {
             scorpion: { 
                 color: '#ffcc00', name: 'SCORPION',
+                // Scorpion: fast needle jab (tiny reach) + long chain-spear punch (huge reach)
                 strikes: {
-                    punchHigh: { damage: 12, reach: 45, duration: 120, cooldown: 350 },
-                    punchLow: { damage: 10, reach: 40, duration: 110, cooldown: 350 },
-                    kickHigh: { damage: 15, reach: 55, duration: 150, cooldown: 450 },
-                    kickLow: { damage: 12, reach: 50, duration: 140, cooldown: 400 }
+                    punchHigh:  { damage: 8,  reach: 10, duration: 80,  cooldown: 250, label: 'Quickjab',    hitboxH: 25, glowColor: 'rgba(255,200,0,0.6)' },
+                    punchLow:   { damage: 10, reach: 30, duration: 100, cooldown: 300, label: 'TortureFist', hitboxH: 20, glowColor: 'rgba(255,160,0,0.6)' },
+                    kickHigh:   { damage: 16, reach: 80, duration: 160, cooldown: 450, label: 'ChainWhip',   hitboxH: 35, glowColor: 'rgba(255,220,0,0.8)' },
+                    kickLow:    { damage: 12, reach: 55, duration: 130, cooldown: 380, label: 'HellSweep',   hitboxH: 18, glowColor: 'rgba(200,100,0,0.7)' }
                 }
             },
             subzero: { 
                 color: '#33ccff', name: 'SUB-ZERO',
+                // Sub-Zero: slow powerful ice punches + devastating wide freeze-kick
                 strikes: {
-                    punchHigh: { damage: 10, reach: 40, duration: 110, cooldown: 380 },
-                    punchLow: { damage: 10, reach: 40, duration: 110, cooldown: 350 },
-                    kickHigh: { damage: 18, reach: 50, duration: 160, cooldown: 500 }, // Heavy kick
-                    kickLow: { damage: 12, reach: 50, duration: 140, cooldown: 400 }
+                    punchHigh:  { damage: 14, reach: 40, duration: 160, cooldown: 500, label: 'IceFist',    hitboxH: 40, glowColor: 'rgba(100,200,255,0.7)' },
+                    punchLow:   { damage: 11, reach: 20, duration: 120, cooldown: 380, label: 'FrostJab',   hitboxH: 20, glowColor: 'rgba(80,160,255,0.6)'  },
+                    kickHigh:   { damage: 22, reach: 90, duration: 220, cooldown: 650, label: 'GlacierKick',hitboxH: 50, glowColor: 'rgba(0,180,255,0.9)'  },
+                    kickLow:    { damage: 13, reach: 45, duration: 150, cooldown: 420, label: 'IceSweep',   hitboxH: 18, glowColor: 'rgba(60,140,255,0.7)' }
                 }
             },
             liukang: { 
                 color: '#ff3333', name: 'LIU KANG',
+                // Liu Kang: ultra-fast bicycle kicks, builds rhythm — tiny fist but wide spinning kicks
                 strikes: {
-                    // Fast, lower damage
-                    punchHigh: { damage: 8, reach: 35, duration: 90, cooldown: 250 },
-                    punchLow: { damage: 8, reach: 35, duration: 90, cooldown: 250 },
-                    kickHigh: { damage: 12, reach: 50, duration: 120, cooldown: 350 }, // Famous kicks
-                    kickLow: { damage: 10, reach: 45, duration: 110, cooldown: 350 }
+                    punchHigh:  { damage: 7,  reach: 25, duration: 70,  cooldown: 200, label: 'DragonJab',  hitboxH: 22, glowColor: 'rgba(255,80,0,0.5)'   },
+                    punchLow:   { damage: 6,  reach: 15, duration: 60,  cooldown: 180, label: 'VenomFist',  hitboxH: 18, glowColor: 'rgba(255,30,30,0.5)'  },
+                    kickHigh:   { damage: 18, reach: 70, duration: 140, cooldown: 350, label: 'BicycleKick',hitboxH: 45, glowColor: 'rgba(255,120,0,0.8)'  },
+                    kickLow:    { damage: 12, reach: 50, duration: 110, cooldown: 300, label: 'DragonSweep',hitboxH: 15, glowColor: 'rgba(200,40,0,0.7)'   }
                 }
             },
             reptile: { 
                 color: '#22dd22', name: 'REPTILE',
+                // Reptile: tiny venom spit fist + enormous tail sweep covering entire side
                 strikes: {
-                    // Fast punches, medium kicks
-                    punchHigh: { damage: 9, reach: 40, duration: 100, cooldown: 300 },
-                    punchLow: { damage: 9, reach: 40, duration: 100, cooldown: 300 },
-                    kickHigh: { damage: 14, reach: 45, duration: 140, cooldown: 400 },
-                    kickLow: { damage: 11, reach: 45, duration: 130, cooldown: 380 }
+                    punchHigh:  { damage: 9,  reach: 10, duration: 90,  cooldown: 270, label: 'VenomStrike', hitboxH: 20, glowColor: 'rgba(0,255,80,0.5)'  },
+                    punchLow:   { damage: 8,  reach: 20, duration: 80,  cooldown: 250, label: 'ClawRake',    hitboxH: 15, glowColor: 'rgba(50,220,0,0.5)'  },
+                    kickHigh:   { damage: 20, reach: 100,duration: 200, cooldown: 550, label: 'TailSweep',   hitboxH: 30, glowColor: 'rgba(0,200,50,0.9)'  },
+                    kickLow:    { damage: 11, reach: 35, duration: 120, cooldown: 320, label: 'ScaleKick',   hitboxH: 14, glowColor: 'rgba(40,180,40,0.6)' }
                 }
             },
             jax: { 
                 color: '#888888', name: 'JAX',
+                // Jax: short brutal grab/slam (very close range) + massive ground-pound shockwave
                 strikes: {
-                    // Slow, heavy damage, short reach (punch-focused)
-                    punchHigh: { damage: 20, reach: 40, duration: 200, cooldown: 600 },
-                    punchLow: { damage: 18, reach: 40, duration: 180, cooldown: 550 },
-                    kickHigh: { damage: 22, reach: 45, duration: 220, cooldown: 600 },
-                    kickLow: { damage: 15, reach: 45, duration: 180, cooldown: 500 }
+                    punchHigh:  { damage: 22, reach: 35, duration: 220, cooldown: 650, label: 'PowerSlam',   hitboxH: 55, glowColor: 'rgba(200,150,80,0.8)' },
+                    punchLow:   { damage: 18, reach: 25, duration: 190, cooldown: 580, label: 'GutPunch',     hitboxH: 40, glowColor: 'rgba(180,120,60,0.7)' },
+                    kickHigh:   { damage: 26, reach: 60, duration: 260, cooldown: 700, label: 'QuakeStamp',   hitboxH: 60, glowColor: 'rgba(220,180,100,0.9)'},
+                    kickLow:    { damage: 14, reach: 45, duration: 180, cooldown: 500, label: 'SteelSweep',   hitboxH: 20, glowColor: 'rgba(150,120,80,0.6)' }
                 }
             },
             raiden: { 
                 color: '#ffffff', name: 'RAIDEN',
+                // Raiden: all long-range electric strikes, shortest is still 50px
                 strikes: {
-                    // Long reach, medium damage
-                    punchHigh: { damage: 12, reach: 55, duration: 130, cooldown: 400 },
-                    punchLow: { damage: 10, reach: 50, duration: 120, cooldown: 400 },
-                    kickHigh: { damage: 15, reach: 60, duration: 160, cooldown: 500 },
-                    kickLow: { damage: 12, reach: 55, duration: 150, cooldown: 450 }
+                    punchHigh:  { damage: 14, reach: 65, duration: 150, cooldown: 420, label: 'ThunderFist', hitboxH: 45, glowColor: 'rgba(150,220,255,0.8)' },
+                    punchLow:   { damage: 11, reach: 50, duration: 130, cooldown: 400, label: 'ShockJab',    hitboxH: 30, glowColor: 'rgba(100,180,255,0.7)' },
+                    kickHigh:   { damage: 18, reach: 100,duration: 200, cooldown: 550, label: 'LightningKick',hitboxH: 55, glowColor: 'rgba(200,240,255,0.9)'},
+                    kickLow:    { damage: 13, reach: 75, duration: 170, cooldown: 470, label: 'StormSweep',  hitboxH: 20, glowColor: 'rgba(120,200,255,0.7)' }
                 }
             }
         };
@@ -243,11 +245,11 @@ class Game {
         if (this.player1.health === this.player2.health) {
             announce.innerText = 'TIE';
         } else if (this.player1.health > this.player2.health) {
-            announce.innerText = 'SCORPION WINS';
-            announce.style.textShadow = '0 0 20px #ffcc00';
+            announce.innerText = `${this.player1.name} WINS`;
+            announce.style.textShadow = `0 0 20px ${this.characters[this.p1Choice].color}`;
         } else {
-            announce.innerText = 'SUB-ZERO WINS';
-            announce.style.textShadow = '0 0 20px #33ccff';
+            announce.innerText = `${this.player2.name} WINS`;
+            announce.style.textShadow = `0 0 20px ${this.characters[this.p2Choice].color}`;
         }
 
         // Add Restart Button
